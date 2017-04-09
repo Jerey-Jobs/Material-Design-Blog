@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.3.3 -->
+
+    <!-- Title -->
+    
+    <title>
+        
+            阿里巴巴Java编程规约学习记录 | 
+        
+        夏敏的博客
+    </title>
+
+    <!-- Meta & Info -->
+    <meta charset="utf-8">
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    
+    
+    
+    
+    
+    
+
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="Jerey_Jobs">
+    <meta name="description" content="夏敏的博客">
+    <meta name="keywords" content="null,Java">
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/captain_android.jpg">
+    <link rel="icon" sizes="192x192" href="/img/captain_android.jpg">
+    <link rel="apple-touch-icon" href="/img/captain_android.jpg">
+
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="夏敏的博客">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://jerey.cn">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="阿里巴巴Java编程规约学习记录 | 夏敏的博客">
+    <meta property="og:description" content="夏敏的博客">
+    <meta property="og:article:tag" content="Java"> 
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS & jQuery -->
+    
+        <link rel="stylesheet" href="/Material-Design-Blog/public/css/material.min.css">
+        <link rel="stylesheet" href="/Material-Design-Blog/public/css/style.min.css">
+        <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-image: url(/img/bg.png);
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+        <script src="/Material-Design-Blog/public/js/jquery.min.js"></script>
+        <script src="/Material-Design-Blog/public/js/queue.js"></script>
+    
+
+    <!-- UC Browser Compatible -->
+    <script>
+        var agent = navigator.userAgent.toLowerCase();
+        if(agent.indexOf('ucbrowser')>0) {
+            document.write("<link rel=\"stylesheet\" href=\"/Material-Design-Blog/public/css/uc.css\">");
+            alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+        }
+    </script>
+
+    
+
+    
+
+
+    <!-- Bing Background -->
+    
+
+    <!-- Custom Head -->
+    
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#浅谈"><span class="post-toc-number">1.</span> <span class="post-toc-text">浅谈</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#命名"><span class="post-toc-number">2.</span> <span class="post-toc-text">命名</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#常量定义，还是有点要说的"><span class="post-toc-number">3.</span> <span class="post-toc-text">常量定义，还是有点要说的</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#格式规定"><span class="post-toc-number">4.</span> <span class="post-toc-text">格式规定</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#OOP规约"><span class="post-toc-number">5.</span> <span class="post-toc-text">OOP规约</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#集合处理"><span class="post-toc-number">6.</span> <span class="post-toc-text">集合处理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1【强制】关于-hashCode-和-equals-的处理，遵循如下规则："><span class="post-toc-number">6.1.</span> <span class="post-toc-text">1【强制】关于 hashCode 和 equals 的处理，遵循如下规则： </span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-ArrayList的subList结果不可强转成ArrayList，否则会抛出ClassCastException"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">2. ArrayList的subList结果不可强转成ArrayList，否则会抛出ClassCastException</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-【强制】使用集合转数组的方法，必须使用集合的-toArray-T-array-，传入的是类型完全-一样的数组，大小就是-list-size-。"><span class="post-toc-number">6.3.</span> <span class="post-toc-text">3.【强制】使用集合转数组的方法，必须使用集合的 toArray(T[] array)，传入的是类型完全 一样的数组，大小就是 list.size()。</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#使用工具类-Arrays-asList-把数组转换成集合时，不能使用其修改集合相关的方-法，它的-add-remove-clear-方法会抛出-UnsupportedOperationException-异常"><span class="post-toc-number">6.4.</span> <span class="post-toc-text">使用工具类 Arrays.asList()把数组转换成集合时，不能使用其修改集合相关的方 法，它的 add/remove/clear 方法会抛出 UnsupportedOperationException 异常</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#【强制】不要在-foreach-循环里进行元素的-remove-add-操作。remove-元素请使用-Iterator-方式，如果并发操作，需要对-Iterator-对象加锁。"><span class="post-toc-number">6.5.</span> <span class="post-toc-text">【强制】不要在 foreach 循环里进行元素的 remove/add 操作。remove 元素请使用 Iterator 方式，如果并发操作，需要对 Iterator 对象加锁。</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#【强制】-在-JDK7-版本以上，Comparator-要满足自反性，传递性，对称性，不然-Arrays-sort，-Collections-sort-会报-IllegalArgumentException-异常。"><span class="post-toc-number">6.6.</span> <span class="post-toc-text">【强制】 在 JDK7 版本以上，Comparator 要满足自反性，传递性，对称性，不然 Arrays.sort， Collections.sort 会报 IllegalArgumentException 异常。</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#【推荐】集合初始化时，尽量指定集合初始值大小。"><span class="post-toc-number">6.7.</span> <span class="post-toc-text">【推荐】集合初始化时，尽量指定集合初始值大小。</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#【推荐】使用-entrySet-遍历-Map-类集合-KV，而不是-keySet-方式进行遍历。"><span class="post-toc-number">6.8.</span> <span class="post-toc-text">【推荐】使用 entrySet 遍历 Map 类集合 KV，而不是 keySet 方式进行遍历。</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#【参考】利用-Set-元素唯一的特性，可以快速对一个集合进行去重操作，避免使用-List-的-contains-方法进行遍历、对比、去重操作。"><span class="post-toc-number">6.9.</span> <span class="post-toc-text">【参考】利用 Set 元素唯一的特性，可以快速对一个集合进行去重操作，避免使用 List 的 contains 方法进行遍历、对比、去重操作。</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#并发处理"><span class="post-toc-number">7.</span> <span class="post-toc-text">并发处理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#【强制】获取单例对象需要保证线程安全，其中的方法也要保证线程安全。"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">【强制】获取单例对象需要保证线程安全，其中的方法也要保证线程安全。</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#【强制】线程池不允许使用-Executors-去创建，而是通过-ThreadPoolExecutor"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">【强制】线程池不允许使用 Executors 去创建，而是通过 ThreadPoolExecutor</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#【强制】多线程并行处理定时任务时，Timer-运行多个-TimeTask-时，只要其中之一没有捕获-抛出的异常，其它任务便会自动终止运行，使用-ScheduledExecutorService-则没有这个问题。"><span class="post-toc-number">7.3.</span> <span class="post-toc-text">【强制】多线程并行处理定时任务时，Timer 运行多个 TimeTask 时，只要其中之一没有捕获 抛出的异常，其它任务便会自动终止运行，使用 ScheduledExecutorService 则没有这个问题。</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#【推荐】避免-Random-实例被多线程使用，虽然共享该实例是线程安全的，但会因竞争同一-seed-导致的性能下降。"><span class="post-toc-number">7.4.</span> <span class="post-toc-text">【推荐】避免 Random 实例被多线程使用，虽然共享该实例是线程安全的，但会因竞争同一 seed 导致的性能下降。</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#【参考】volatile-解决多线程内存不可见问题。对于一写多读，是可以解决变量同步问题，-但是如果多写，同样无法解决线程安全问题。"><span class="post-toc-number">7.5.</span> <span class="post-toc-text">【参考】volatile 解决多线程内存不可见问题。对于一写多读，是可以解决变量同步问题， 但是如果多写，同样无法解决线程安全问题。</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#谢谢大家阅读，如有帮助，来个喜欢或者关注吧！"><span class="post-toc-number">8.</span> <span class="post-toc-text">谢谢大家阅读，如有帮助，来个喜欢或者关注吧！</span></a></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script>
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                阿里巴巴Java编程规约学习记录
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/study-dog.jpg" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Jerey_Jobs</strong>
+        <span>2月 11, 2017</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/Material-Design-Blog/public/tags/Java/">Java</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=阿里巴巴Java编程规约学习记录&url=http://jerey.cn/Material-Design-Blog/public//Material-Design-Blog/public/2017/02/11/2017-02-11-阿里巴巴Java编程规约学习记录/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=阿里巴巴Java编程规约学习记录&url=http://jerey.cn/Material-Design-Blog/public//Material-Design-Blog/public/2017/02/11/2017-02-11-阿里巴巴Java编程规约学习记录/index.html&via=Jerey_Jobs" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://jerey.cn/Material-Design-Blog/public//Material-Design-Blog/public/2017/02/11/2017-02-11-阿里巴巴Java编程规约学习记录/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://jerey.cn/Material-Design-Blog/public//Material-Design-Blog/public/2017/02/11/2017-02-11-阿里巴巴Java编程规约学习记录/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=夏敏的博客&title=阿里巴巴Java编程规约学习记录&summary=夏敏的博客&pics=http://jerey.cn/img/captain_android.jpg&url=http://jerey.cn/Material-Design-Blog/public/2017/02/11/2017-02-11-阿里巴巴Java编程规约学习记录/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h3 id="浅谈"><a href="#浅谈" class="headerlink" title="浅谈"></a>浅谈</h3><p>2017年2月9日，阿里发布了Java编程规范，旨在为行业树立新的规范，经过阅读，感觉为行业进步的确能够带来不少的好处。</p>
+<p>以下是阿里公共号原文：</p>
+<p>众所周知，制订交通法规表面上是要限制行车权，实际上是保障公众的人身安全。试想如果没有限速，没有红绿灯，没有规定靠右行驶，谁还敢上路。同理，对软件来说，适当的规范和标准绝不是消灭代码内容的创造性、优雅性，而是限制过度个性化，以一种普遍认可的方式一起做事。阿里巴巴集团推出的Java开发手册是阿里巴巴近千名开发同学集体智慧的结晶，以开发视角为中心，详细列举如何开发更加高效，更加容错，更加有协作性，力求知其然，更知其不然，结合正反例，让Java开发者能够提升协作效率、提高代码质量。</p>
+<p>阿里，的确为整个行业操碎了心，下面，我们就来看一看手册上的重点内容。</p>
+<h3 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h3><p>命名的不就讲了，大体就是正常的方式，不要奇葩命名</p>
+<h3 id="常量定义，还是有点要说的"><a href="#常量定义，还是有点要说的" class="headerlink" title="常量定义，还是有点要说的"></a>常量定义，还是有点要说的</h3><p>1: 不允许出现任何魔法值（即未经定义的常量）直接出现在代码中。 (这个大家都知道)</p>
+<p>2: long 或者 Long 初始赋值时，必须使用大写的 L，不能是小写的 l，小写容易跟数字 1 混淆，造成误解</p>
+<p>3:如果变量值仅在一个范围内变化用 Enum 类。如果还带有名称之外的延伸属性，必须 使用 Enum 类，下面正例中的数字就是延伸信息，表示星期几。(这个，在C语言的时候的确是注意的，转到java后我还真的没注意这一点)</p>
+<h3 id="格式规定"><a href="#格式规定" class="headerlink" title="格式规定"></a>格式规定</h3><p>格式规定其实没有太多要讲了，美观，大方，清爽，且符合Google的Format基本就行了</p>
+<h3 id="OOP规约"><a href="#OOP规约" class="headerlink" title="OOP规约"></a>OOP规约</h3><p>1:【强制】避免通过一个类的对象引用访问此类的静态变量或静态方法，无谓增加编译器解析成 本，直接用类名来访问即可。 说得好。</p>
+<p>2:【强制】相同参数类型，相同业务含义，才可以使用 Java 的可变参数，避免使用 Object</p>
+<p>3: 对外暴露的接口签名，原则上不允许修改方法签名，避免对接口调用方产生影响。接口过时必须加 @Deprecated 注解，并清晰地说明采用的新接口或者新服务是什么。</p>
+<p>4:【强制】Object 的 equals 方法容易抛空指针异常，应使用常量或确定有值的对象来调用 equals。    <br></p>
+<ul>
+<li>正例： “test”.equals(object); <br></li>
+<li>反例： object.equals(“test”); <br></li>
+<li>说明：推荐使用 java.util.Objects#equals （JDK7 引入的工具类） </li>
+</ul>
+<p>5:【强制】所有的相同类型的包装类对象之间值的比较，全部使用 equals 方法比较。<br> </p>
+<ul>
+<li>说明：对于 Integer var=?在-128 至 127 之间的赋值，Integer 对象是在 IntegerCache.cache 产生，会复用已有对象，这个区间内的 Integer 值可以直接使用==进行 判断，但是这个区间之外的所有数据，都会在堆上产生，并不会复用已有对象，这是一个大坑， 推荐使用 equals 方法进行判断。</li>
+</ul>
+<p>6:【强制】构造方法里面禁止加入任何业务逻辑，如果有初始化逻辑，请放在 init 方法中。 干得漂亮。</p>
+<p>7:【强制】POJO 类必须写 toString 方法。使用 IDE 的中工具：source&gt; generate toString 时，如果继承了另一个 POJO 类，注意在前面加一下 super.toString。 </p>
+<p>8:【推荐】使用索引访问用 String 的 split 方法得到的数组时，需做最后一个分隔符后有无 内容的检查，否则会有抛 IndexOutOfBoundsException 的风险。 <br></p>
+<ul>
+<li>说明： </li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">String str = <span class="string">"a,b,c,,"</span>;  </div><div class="line">String[] ary = str.split(<span class="string">","</span>);  <span class="comment">//预期大于 3，结果是</span></div><div class="line">System.out.println(ary.length);</div></pre></td></tr></table></figure>
+<p>9: 循环体内，字符串的联接方式，使用 StringBuilder 的 append 方法进行扩展。 </p>
+<ul>
+<li>反例：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">String str = <span class="string">"start"</span>;       </div><div class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">100</span>; i++)&#123;           	</div><div class="line">	str = str + <span class="string">"hello"</span>;       	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>说明：反编译出的字节码文件显示每次循环都会 new 出一个 StringBuilder 对象，然后进行 append 操作，最后通过 toString 方法返回 String 对象，造成内存资源浪费。</p>
+<p>10:【推荐】final 可提高程序响应效率，声明成 final 的情况 </p>
+<ul>
+<li>要重新赋值的变量，包括类属性、局部变量。</li>
+<li>对象参数前加 final，表示不允许修改引用的指向。  </li>
+<li>类方法确定不允许被重写</li>
+</ul>
+<p>11:【推荐】慎用 Object 的 clone 方法来拷贝对象。 </p>
+<pre><code>- 说明：对象的 clone 方法默认是浅拷贝，若想实现深拷贝需要重写 clone 方法实现属性对象 的拷贝。
+</code></pre><h3 id="集合处理"><a href="#集合处理" class="headerlink" title="集合处理"></a>集合处理</h3><h4 id="1【强制】关于-hashCode-和-equals-的处理，遵循如下规则："><a href="#1【强制】关于-hashCode-和-equals-的处理，遵循如下规则：" class="headerlink" title="1【强制】关于 hashCode 和 equals 的处理，遵循如下规则： "></a>1【强制】关于 hashCode 和 equals 的处理，遵循如下规则： <br></h4><ul>
+<li>只要重写 equals，就必须重写 hashCode。 <br></li>
+<li>因为 Set 存储的是不重复的对象，依据 hashCode 和 equals 进行判断，所以 Set 存储的 对象必须重写这两个方法。 <br></li>
+<li>如果自定义对象做为 Map 的键，那么必须重写 hashCode 和 equals。 <br></li>
+<li>正例：String 重写了 hashCode 和 equals 方法，所以我们可以非常愉快地使用 String 对象 作为 key 来使用</li>
+</ul>
+<h4 id="2-ArrayList的subList结果不可强转成ArrayList，否则会抛出ClassCastException"><a href="#2-ArrayList的subList结果不可强转成ArrayList，否则会抛出ClassCastException" class="headerlink" title="2. ArrayList的subList结果不可强转成ArrayList，否则会抛出ClassCastException"></a>2. ArrayList的subList结果不可强转成ArrayList，否则会抛出ClassCastException</h4><ul>
+<li>异常：java.util.RandomAccessSubList cannot be cast to java.util.ArrayList ;  <br></li>
+<li>说明：subList 返回的是 ArrayList 的内部类 SubList，并不是 ArrayList ，而是 ArrayList 的一个视图，对于 SubList 子列表的所有操作最终会反映到原列表上。 </li>
+</ul>
+<h4 id="3-【强制】使用集合转数组的方法，必须使用集合的-toArray-T-array-，传入的是类型完全-一样的数组，大小就是-list-size-。"><a href="#3-【强制】使用集合转数组的方法，必须使用集合的-toArray-T-array-，传入的是类型完全-一样的数组，大小就是-list-size-。" class="headerlink" title="3.【强制】使用集合转数组的方法，必须使用集合的 toArray(T[] array)，传入的是类型完全 一样的数组，大小就是 list.size()。"></a>3.【强制】使用集合转数组的方法，必须使用集合的 toArray(T[] array)，传入的是类型完全 一样的数组，大小就是 list.size()。</h4><ul>
+<li>反例：直接使用 toArray 无参方法存在问题，此方法返回值只能是 Object[]类，若强转其它 类型数组将出现 ClassCastException 错误。 </li>
+<li>正例： </li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;(<span class="number">2</span>);      </div><div class="line">list.add(<span class="string">"guan"</span>);     </div><div class="line">list.add(<span class="string">"bao"</span>);      </div><div class="line">String[] array = <span class="keyword">new</span> String[list.size()];      </div><div class="line">array = list.toArray(array);</div></pre></td></tr></table></figure>
+<ul>
+<li>说明：使用 toArray 带参方法，入参分配的数组空间不够大时，toArray 方法内部将重新分配 内存空间，并返回新数组地址；如果数组元素大于实际所需，下标为[ list.size() ]的数组 元素将被置为 null，其它数组元素保持原值，因此最好将方法入参数组大小定义与集合元素 个数一致。 </li>
+</ul>
+<h4 id="使用工具类-Arrays-asList-把数组转换成集合时，不能使用其修改集合相关的方-法，它的-add-remove-clear-方法会抛出-UnsupportedOperationException-异常"><a href="#使用工具类-Arrays-asList-把数组转换成集合时，不能使用其修改集合相关的方-法，它的-add-remove-clear-方法会抛出-UnsupportedOperationException-异常" class="headerlink" title="使用工具类 Arrays.asList()把数组转换成集合时，不能使用其修改集合相关的方 法，它的 add/remove/clear 方法会抛出 UnsupportedOperationException 异常"></a>使用工具类 Arrays.asList()把数组转换成集合时，不能使用其修改集合相关的方 法，它的 add/remove/clear 方法会抛出 UnsupportedOperationException 异常</h4><ul>
+<li>说明：asList 的返回对象是一个 Arrays 内部类，并没有实现集合的修改方法。Arrays.asList 体现的是适配器模式，只是转换接口，后台的数据仍是数组。 </li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">String[] str = <span class="keyword">new</span> String[] &#123; <span class="string">"a"</span>, <span class="string">"b"</span> &#125;;     </div><div class="line">List list = Arrays.asList(str);</div></pre></td></tr></table></figure>
+<ul>
+<li>第一种情况：list.add(“c”); 运行时异常。</li>
+<li>第二种情况：str[0]= “gujin”; 那么 list.get(0)也会随之修改。 </li>
+</ul>
+<h4 id="【强制】不要在-foreach-循环里进行元素的-remove-add-操作。remove-元素请使用-Iterator-方式，如果并发操作，需要对-Iterator-对象加锁。"><a href="#【强制】不要在-foreach-循环里进行元素的-remove-add-操作。remove-元素请使用-Iterator-方式，如果并发操作，需要对-Iterator-对象加锁。" class="headerlink" title="【强制】不要在 foreach 循环里进行元素的 remove/add 操作。remove 元素请使用 Iterator 方式，如果并发操作，需要对 Iterator 对象加锁。"></a>【强制】不要在 foreach 循环里进行元素的 remove/add 操作。remove 元素请使用 Iterator 方式，如果并发操作，需要对 Iterator 对象加锁。</h4><ul>
+<li>反例：</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">List&lt;String&gt; a = new ArrayList&lt;String&gt;();</div><div class="line">a.add("1");     </div><div class="line">a.add("2");      </div><div class="line">for (String temp : a) &#123;          </div><div class="line">    if("1".equals(temp))&#123;              </div><div class="line">        a.remove(temp);          </div><div class="line">    &#125;      </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>说明：以上代码的执行结果肯定会出乎大家的意料，那么试一下把“1”换成“2”，会是同样的 结果吗？ 正例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Iterator&lt;String&gt; it = a.iterator();  </div><div class="line"><span class="keyword">while</span>(it.hasNext())&#123;              </div><div class="line">	String temp =  it.next();                       </div><div class="line">	<span class="keyword">if</span>(删除元素的条件)&#123;                              </div><div class="line">	it.remove();                 </div><div class="line">	&#125;      </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="【强制】-在-JDK7-版本以上，Comparator-要满足自反性，传递性，对称性，不然-Arrays-sort，-Collections-sort-会报-IllegalArgumentException-异常。"><a href="#【强制】-在-JDK7-版本以上，Comparator-要满足自反性，传递性，对称性，不然-Arrays-sort，-Collections-sort-会报-IllegalArgumentException-异常。" class="headerlink" title="【强制】 在 JDK7 版本以上，Comparator 要满足自反性，传递性，对称性，不然 Arrays.sort， Collections.sort 会报 IllegalArgumentException 异常。"></a>【强制】 在 JDK7 版本以上，Comparator 要满足自反性，传递性，对称性，不然 Arrays.sort， Collections.sort 会报 IllegalArgumentException 异常。</h4><ul>
+<li>说明：  <ul>
+<li>1） 自反性：x，y 的比较结果和 y，x 的比较结果相反。  </li>
+<li>2） 传递性：x&gt;y,y&gt;z,则 x&gt;z。 </li>
+<li>3） 对称性：x=y,则 x,z 比较结果和 y，z 比较结果相同。</li>
+</ul>
+</li>
+</ul>
+<p>-反例：下例中没有处理相等的情况，实际使用中可能会出现异常：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> Comparator&lt;Student&gt;() &#123;           </div><div class="line">    <span class="meta">@Override</span>          </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">intcompare</span><span class="params">(Student o1, Student o2)</span> </span>&#123;              </div><div class="line">         <span class="keyword">return</span> o1.getId() &gt; o2.getId() ? <span class="number">1</span> : -<span class="number">1</span>;         </div><div class="line">    &#125;     </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="【推荐】集合初始化时，尽量指定集合初始值大小。"><a href="#【推荐】集合初始化时，尽量指定集合初始值大小。" class="headerlink" title="【推荐】集合初始化时，尽量指定集合初始值大小。"></a>【推荐】集合初始化时，尽量指定集合初始值大小。</h4><ul>
+<li>说明：ArrayList 尽量使用 ArrayList(int initialCapacity) 初始化。 </li>
+</ul>
+<h4 id="【推荐】使用-entrySet-遍历-Map-类集合-KV，而不是-keySet-方式进行遍历。"><a href="#【推荐】使用-entrySet-遍历-Map-类集合-KV，而不是-keySet-方式进行遍历。" class="headerlink" title="【推荐】使用 entrySet 遍历 Map 类集合 KV，而不是 keySet 方式进行遍历。"></a>【推荐】使用 entrySet 遍历 Map 类集合 KV，而不是 keySet 方式进行遍历。</h4><ul>
+<li>说明：keySet 其实是遍历了 2 次，一次是转为 Iterator 对象，另一次是从 hashMap 中取出 key 所对应的 value。而 entrySet 只是遍历了一次就把 key 和 value 都放到了 entry 中，效 率更高。如果是 JDK8，使用 Map.foreach 方法。 </li>
+<li>正例：values()返回的是 V 值集合，是一个 list 集合对象；keySet()返回的是 K 值集合，是 一个 Set 集合对象；entrySet()返回的是 K-V 值组合集合。 </li>
+</ul>
+<h4 id="【参考】利用-Set-元素唯一的特性，可以快速对一个集合进行去重操作，避免使用-List-的-contains-方法进行遍历、对比、去重操作。"><a href="#【参考】利用-Set-元素唯一的特性，可以快速对一个集合进行去重操作，避免使用-List-的-contains-方法进行遍历、对比、去重操作。" class="headerlink" title="【参考】利用 Set 元素唯一的特性，可以快速对一个集合进行去重操作，避免使用 List 的 contains 方法进行遍历、对比、去重操作。"></a>【参考】利用 Set 元素唯一的特性，可以快速对一个集合进行去重操作，避免使用 List 的 contains 方法进行遍历、对比、去重操作。</h4><h3 id="并发处理"><a href="#并发处理" class="headerlink" title="并发处理"></a>并发处理</h3><h4 id="【强制】获取单例对象需要保证线程安全，其中的方法也要保证线程安全。"><a href="#【强制】获取单例对象需要保证线程安全，其中的方法也要保证线程安全。" class="headerlink" title="【强制】获取单例对象需要保证线程安全，其中的方法也要保证线程安全。"></a>【强制】获取单例对象需要保证线程安全，其中的方法也要保证线程安全。</h4><ul>
+<li>说明：资源驱动类、工具类、单例工厂类都需要注意。</li>
+</ul>
+<h4 id="【强制】线程池不允许使用-Executors-去创建，而是通过-ThreadPoolExecutor"><a href="#【强制】线程池不允许使用-Executors-去创建，而是通过-ThreadPoolExecutor" class="headerlink" title="【强制】线程池不允许使用 Executors 去创建，而是通过 ThreadPoolExecutor"></a>【强制】线程池不允许使用 Executors 去创建，而是通过 ThreadPoolExecutor</h4><ul>
+<li>这样 的处理方式让写的同学更加明确线程池的运行规则，规避资源耗尽的风险。</li>
+<li>说明：Executors 返回的线程池对象的弊端如下： <ul>
+<li>1）FixedThreadPool 和 SingleThreadPool:   允许的请求队列长度为 Integer.MAX_VALUE，可能会堆积大量的请求，从而导致 OOM。 </li>
+<li>2）CachedThreadPool 和 ScheduledThreadPool:   允许的创建线程数量为 Integer.MAX_VALUE，可能会创建大量的线程，从而导致 OOM。</li>
+</ul>
+</li>
+</ul>
+<h4 id="【强制】多线程并行处理定时任务时，Timer-运行多个-TimeTask-时，只要其中之一没有捕获-抛出的异常，其它任务便会自动终止运行，使用-ScheduledExecutorService-则没有这个问题。"><a href="#【强制】多线程并行处理定时任务时，Timer-运行多个-TimeTask-时，只要其中之一没有捕获-抛出的异常，其它任务便会自动终止运行，使用-ScheduledExecutorService-则没有这个问题。" class="headerlink" title="【强制】多线程并行处理定时任务时，Timer 运行多个 TimeTask 时，只要其中之一没有捕获 抛出的异常，其它任务便会自动终止运行，使用 ScheduledExecutorService 则没有这个问题。"></a>【强制】多线程并行处理定时任务时，Timer 运行多个 TimeTask 时，只要其中之一没有捕获 抛出的异常，其它任务便会自动终止运行，使用 ScheduledExecutorService 则没有这个问题。</h4><h4 id="【推荐】避免-Random-实例被多线程使用，虽然共享该实例是线程安全的，但会因竞争同一-seed-导致的性能下降。"><a href="#【推荐】避免-Random-实例被多线程使用，虽然共享该实例是线程安全的，但会因竞争同一-seed-导致的性能下降。" class="headerlink" title="【推荐】避免 Random 实例被多线程使用，虽然共享该实例是线程安全的，但会因竞争同一 seed 导致的性能下降。"></a>【推荐】避免 Random 实例被多线程使用，虽然共享该实例是线程安全的，但会因竞争同一 seed 导致的性能下降。</h4><ul>
+<li>说明：Random 实例包括 java.util.Random 的实例或者 Math.random()实例。 </li>
+<li>正例：在 JDK7 之后，可以直接使用 API ThreadLocalRandom，在 JDK7 之前，可以做到每个 线程一个实例。 </li>
+</ul>
+<h4 id="【参考】volatile-解决多线程内存不可见问题。对于一写多读，是可以解决变量同步问题，-但是如果多写，同样无法解决线程安全问题。"><a href="#【参考】volatile-解决多线程内存不可见问题。对于一写多读，是可以解决变量同步问题，-但是如果多写，同样无法解决线程安全问题。" class="headerlink" title="【参考】volatile 解决多线程内存不可见问题。对于一写多读，是可以解决变量同步问题， 但是如果多写，同样无法解决线程安全问题。"></a>【参考】volatile 解决多线程内存不可见问题。对于一写多读，是可以解决变量同步问题， 但是如果多写，同样无法解决线程安全问题。</h4><ul>
+<li>如果是 count++操作，使用如下类实现： AtomicInteger count = new AtomicInteger(); count.addAndGet(1); </li>
+<li>如果是 JDK8，推 荐使用 LongAdder 对象，比 AtomicLong 性能更好（减少乐观锁的重试次数）</li>
+</ul>
+<p>####</p>
+<p>…待写</p>
+<hr>
+<h3 id="谢谢大家阅读，如有帮助，来个喜欢或者关注吧！"><a href="#谢谢大家阅读，如有帮助，来个喜欢或者关注吧！" class="headerlink" title="谢谢大家阅读，如有帮助，来个喜欢或者关注吧！"></a>谢谢大家阅读，如有帮助，来个喜欢或者关注吧！</h3><hr>
+<p> 本文作者：Anderson/Jerey_Jobs </p>
+<p> 博客地址   ： <a href="http://jerey.cn/">夏敏的博客/Anderson大码渣/Jerey_Jobs</a> <br><br> 简书地址   :  <a href="http://www.jianshu.com/users/016a5ba708a0/latest_articles" target="_blank" rel="external">Anderson大码渣</a> <br><br> CSDN地址   :  <a href="http://blog.csdn.net/jerey_jobs" target="_blank" rel="external">Jerey_Jobs的专栏</a> <br><br> github地址 :  <a href="https://github.com/Jerey-Jobs" target="_blank" rel="external">Jerey_Jobs</a></p>
+
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+
+
+
+
+
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/Material-Design-Blog/public/2017/02/10/2017-02-10-学习资料无尽-Android进阶资料大全[转] /" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/Material-Design-Blog/public/2017/02/14/2017-02-14-No SQL, Realm轻量级，现代化数据库入门/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/study-dog.jpg" alt="Jerey_Jobs's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        610315802@qq.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="#" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/Material-Design-Blog/public/" target="_self">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2017/04/">四月 2017<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2017/03/">三月 2017<span class="sidebar_archives-count">12</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2017/02/">二月 2017<span class="sidebar_archives-count">11</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2017/01/">一月 2017<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2016/12/">十二月 2016<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2016/11/">十一月 2016<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2016/10/">十月 2016<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2016/09/">九月 2016<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2016/08/">八月 2016<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2016/07/">七月 2016<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2016/06/">六月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2015/09/">九月 2015<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2014/12/">十二月 2014<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/Android/">Android<span class="sidebar_archives-count">27</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/Blog/">Blog<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/Java/">Java<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/Linux/">Linux<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/View/">View<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/大学那点事/">大学那点事<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/奇技淫巧/">奇技淫巧<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/小知识/">小知识<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/工具类/">工具类<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/漫漫人生路/">漫漫人生路<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/程序员漫画/">程序员漫画<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/网络/">网络<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/设计模式/">设计模式<span class="sidebar_archives-count">10</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/零散记录/">零散记录<span class="sidebar_archives-count">4</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/portfolio/index.html" title="About">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                About
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+        <li>
+            <a href="/archives">
+                文章总数
+                <span class="sidebar-badge">70</span>
+            </a>
+        </li>
+        
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+
+<!-- Theme Material -->
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+        <a href="https://www.google.com/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-gplus.svg);">
+                <span class="visuallyhidden">Google Plus</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/Jerey-Jobs" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.svg);">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;
+            <script type="text/javascript">
+                var fd = new Date();
+                document.write(fd.getFullYear());
+            </script>
+            &nbsp;夏敏的博客
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import File -->
+
+    <script src="/Material-Design-Blog/public/js/lazyload.min.js"></script>
+    <script src="/Material-Design-Blog/public/js/js.min.js"></script>
+
+
+
+    <script src="/Material-Design-Blog/public/js/nprogress.js"></script>
+
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+<script>
+    <!-- Offer LazyLoad -->
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    <!-- Start Queue -->
+    $(document).ready(function(){
+        setTimeout(function(){
+            setInterval(function(){
+                queue.execNext();
+            },200);
+        },3000);
+    });
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>

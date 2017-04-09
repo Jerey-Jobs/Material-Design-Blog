@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.3.3 -->
+
+    <!-- Title -->
+    
+    <title>
+        
+            android开发之深入context | 
+        
+        夏敏的博客
+    </title>
+
+    <!-- Meta & Info -->
+    <meta charset="utf-8">
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    
+    
+    
+    
+    
+    
+
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="Jerey_Jobs">
+    <meta name="description" content="夏敏的博客">
+    <meta name="keywords" content="null,Android">
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/captain_android.jpg">
+    <link rel="icon" sizes="192x192" href="/img/captain_android.jpg">
+    <link rel="apple-touch-icon" href="/img/captain_android.jpg">
+
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="夏敏的博客">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://jerey.cn">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="android开发之深入context | 夏敏的博客">
+    <meta property="og:description" content="夏敏的博客">
+    <meta property="og:article:tag" content="Android"> 
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS & jQuery -->
+    
+        <link rel="stylesheet" href="/Material-Design-Blog/public/css/material.min.css">
+        <link rel="stylesheet" href="/Material-Design-Blog/public/css/style.min.css">
+        <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-image: url(/img/bg.png);
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+        <script src="/Material-Design-Blog/public/js/jquery.min.js"></script>
+        <script src="/Material-Design-Blog/public/js/queue.js"></script>
+    
+
+    <!-- UC Browser Compatible -->
+    <script>
+        var agent = navigator.userAgent.toLowerCase();
+        if(agent.indexOf('ucbrowser')>0) {
+            document.write("<link rel=\"stylesheet\" href=\"/Material-Design-Blog/public/css/uc.css\">");
+            alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+        }
+    </script>
+
+    
+
+    
+
+
+    <!-- Bing Background -->
+    
+
+    <!-- Custom Head -->
+    
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script>
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                android开发之深入context
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/study-dog.jpg" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Jerey_Jobs</strong>
+        <span>8月 16, 2016</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/Material-Design-Blog/public/tags/Android/">Android</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=android开发之深入context&url=http://jerey.cn/Material-Design-Blog/public//Material-Design-Blog/public/2016/08/16/2016-08-16-android开发之深入context/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=android开发之深入context&url=http://jerey.cn/Material-Design-Blog/public//Material-Design-Blog/public/2016/08/16/2016-08-16-android开发之深入context/index.html&via=Jerey_Jobs" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://jerey.cn/Material-Design-Blog/public//Material-Design-Blog/public/2016/08/16/2016-08-16-android开发之深入context/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://jerey.cn/Material-Design-Blog/public//Material-Design-Blog/public/2016/08/16/2016-08-16-android开发之深入context/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=夏敏的博客&title=android开发之深入context&summary=夏敏的博客&pics=http://jerey.cn/img/captain_android.jpg&url=http://jerey.cn/Material-Design-Blog/public/2016/08/16/2016-08-16-android开发之深入context/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>今天研究了一下Context类，对于context发现即熟悉又陌生。一个我们天天打交道的东西到底是什么呢，这篇文章将带大家了解context。</p>
+<p><strong>简介</strong></p>
+<p>我们先看google官方的说明</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Interface to global information about an application environment.  This is</div><div class="line"> * an abstract class whose implementation is provided by</div><div class="line"> * the Android system.  It</div><div class="line"> * allows access to application-specific resources and classes, as well as</div><div class="line"> * up-calls for application-level operations such as launching activities,</div><div class="line"> * broadcasting and receiving intents, etc.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Context</span></span></div></pre></td></tr></table></figure>
+<p>  从上可知一下三点,即：<br>        1、它描述的是一个应用程序环境的信息，即上下文。<br><br>        2、该类是一个抽象(abstract class)类，Android提供了该抽象类的具体实现类(后面我们会讲到是ContextIml类)。<br><br>        3、通过它我们可以获取应用程序的资源和类，也包括一些应用级别操作，例如：启动一个Activity，发送广播，接受Intent 信息 等。。</p>
+<p>那么我们明确第一点，context是一个抽象类，而我们平时用的context，均是其实现，而更伟大的是， 我们的application，我们的activity，service，均在context的继承关系树的。<br>让我们看一张类图，相信看完这个类图大家就知道context在我们的应用中是什么样子的地位：<br><br><img src="./images/context.png" alt="context继承关系图" title="context.png"></p>
+<p>同时我们知道了，一个应用程序App共有的Context数目公式为：</p>
+<pre><code>总Context实例个数 = Service个数 + Activity个数 + 1（Application对应的Context实例）
+</code></pre><p>可见，我们的每个Activity，Service，Application都有自己的context，那么context是什么时候传入的呢?</p>
+<p><strong>Context的传入</strong></p>
+<p>   1、创建Application对象的时机</p>
+<pre><code>每个应用程序在第一次启动时，都会首先创建Application对象。如果对应用程序启动一个Activity(startActivity)流程比较
+</code></pre><p>清楚的话，创建Application的时机在创建handleBindApplication()方法中，该函数位于 ActivityThread.java类中 ，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//创建Application时同时创建的ContextIml实例  </span></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">handleBindApplication</span><span class="params">(AppBindData data)</span></span>&#123;  </div><div class="line">    ...  </div><div class="line">    <span class="comment">///创建Application对象  </span></div><div class="line">    Application app = data.info.makeApplication(data.restrictedBackupMode, <span class="keyword">null</span>);  </div><div class="line">    ...  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="function"><span class="keyword">public</span> Application <span class="title">makeApplication</span><span class="params">(<span class="keyword">boolean</span> forceDefaultAppClass, Instrumentation instrumentation)</span> </span>&#123;  </div><div class="line">    ...  </div><div class="line">    <span class="keyword">try</span> &#123;  </div><div class="line">        java.lang.ClassLoader cl = getClassLoader();  </div><div class="line">        ContextImpl appContext = <span class="keyword">new</span> ContextImpl();    <span class="comment">//创建一个ContextImpl对象实例  </span></div><div class="line">        appContext.init(<span class="keyword">this</span>, <span class="keyword">null</span>, mActivityThread);  <span class="comment">//初始化该ContextIml实例的相关属性  </span></div><div class="line">        <span class="comment">///新建一个Application对象   </span></div><div class="line">        app = mActivityThread.mInstrumentation.newApplication(  </div><div class="line">                cl, appClass, appContext);  </div><div class="line">       appContext.setOuterContext(app);  <span class="comment">//将该Application实例传递给该ContextImpl实例           </span></div><div class="line">    &#125;   </div><div class="line">    ...  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>  2、创建Activity对象的时机</p>
+<pre><code>通过startActivity()或startActivityForResult()请求启动一个Activity时，如果系统检测需要新建一个Activity对象时，就会
+</code></pre><p>  回调handleLaunchActivity()方法，该方法继而调用performLaunchActivity()方法，去创建一个Activity实例，并且回调<br> onCreate()，onStart()方法等， 函数都位于 ActivityThread.java类 ，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//创建一个Activity实例时同时创建ContextIml实例  </span></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">handleLaunchActivity</span><span class="params">(ActivityRecord r, Intent customIntent)</span> </span>&#123;  </div><div class="line">    ...  </div><div class="line">    Activity a = performLaunchActivity(r, customIntent);  <span class="comment">//启动一个Activity  </span></div><div class="line">&#125;  </div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">final</span> Activity <span class="title">performLaunchActivity</span><span class="params">(ActivityRecord r, Intent customIntent)</span> </span>&#123;  </div><div class="line">    ...  </div><div class="line">    Activity activity = <span class="keyword">null</span>;  </div><div class="line">    <span class="keyword">try</span> &#123;  </div><div class="line">        <span class="comment">//创建一个Activity对象实例  </span></div><div class="line">        java.lang.ClassLoader cl = r.packageInfo.getClassLoader();  </div><div class="line">        activity = mInstrumentation.newActivity(cl, component.getClassName(), r.intent);  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">if</span> (activity != <span class="keyword">null</span>) &#123;  </div><div class="line">        ContextImpl appContext = <span class="keyword">new</span> ContextImpl();      <span class="comment">//创建一个Activity实例  </span></div><div class="line">        appContext.init(r.packageInfo, r.token, <span class="keyword">this</span>);   <span class="comment">//初始化该ContextIml实例的相关属性  </span></div><div class="line">        appContext.setOuterContext(activity);            <span class="comment">//将该Activity信息传递给该ContextImpl实例  </span></div><div class="line">        ...  </div><div class="line">    &#125;  </div><div class="line">    ...      </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>3、创建Service对象的时机</p>
+<pre><code>通过startService或者bindService时，如果系统检测到需要新创建一个Service实例，就会回调handleCreateService()方法，
+</code></pre><p> 完成相关数据操作。handleCreateService()函数位于 ActivityThread.java类，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//创建一个Service实例时同时创建ContextIml实例  </span></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">handleCreateService</span><span class="params">(CreateServiceData data)</span></span>&#123;  </div><div class="line">    ...  </div><div class="line">    <span class="comment">//创建一个Service实例  </span></div><div class="line">    Service service = <span class="keyword">null</span>;  </div><div class="line">    <span class="keyword">try</span> &#123;  </div><div class="line">        java.lang.ClassLoader cl = packageInfo.getClassLoader();  </div><div class="line">        service = (Service) cl.loadClass(data.info.name).newInstance();  </div><div class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;  </div><div class="line">    &#125;  </div><div class="line">    ...  </div><div class="line">    ContextImpl context = <span class="keyword">new</span> ContextImpl(); <span class="comment">//创建一个ContextImpl对象实例  </span></div><div class="line">    context.init(packageInfo, <span class="keyword">null</span>, <span class="keyword">this</span>);   <span class="comment">//初始化该ContextIml实例的相关属性  </span></div><div class="line">    <span class="comment">//获得我们之前创建的Application对象信息  </span></div><div class="line">    Application app = packageInfo.makeApplication(<span class="keyword">false</span>, mInstrumentation);  </div><div class="line">    <span class="comment">//将该Service信息传递给该ContextImpl实例  </span></div><div class="line">    context.setOuterContext(service);  </div><div class="line">    ...  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>需要强调一点的是，通过对ContextImp的分析可知，其方法的大多数操作都是直接调用其属性mPackageInfo(该属性类型为PackageInfo)<br>的相关方法而来。这说明ContextImp是一种轻量级类，而PackageInfo才是真正重量级的类。而一个App里的所有ContextIml实例，都对应同一个packageInfo对象</p>
+
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+
+
+
+
+
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/Material-Design-Blog/public/2016/08/11/2016-08-11-Android之Builder模式/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/Material-Design-Blog/public/2016/08/19/2016-08-19-Android中的代理模式/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/study-dog.jpg" alt="Jerey_Jobs's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        610315802@qq.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="#" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/Material-Design-Blog/public/" target="_self">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2017/04/">四月 2017<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2017/03/">三月 2017<span class="sidebar_archives-count">12</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2017/02/">二月 2017<span class="sidebar_archives-count">11</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2017/01/">一月 2017<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2016/12/">十二月 2016<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2016/11/">十一月 2016<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2016/10/">十月 2016<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2016/09/">九月 2016<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2016/08/">八月 2016<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2016/07/">七月 2016<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2016/06/">六月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2015/09/">九月 2015<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2014/12/">十二月 2014<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/Android/">Android<span class="sidebar_archives-count">27</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/Blog/">Blog<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/Java/">Java<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/Linux/">Linux<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/View/">View<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/大学那点事/">大学那点事<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/奇技淫巧/">奇技淫巧<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/小知识/">小知识<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/工具类/">工具类<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/漫漫人生路/">漫漫人生路<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/程序员漫画/">程序员漫画<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/网络/">网络<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/设计模式/">设计模式<span class="sidebar_archives-count">10</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/零散记录/">零散记录<span class="sidebar_archives-count">4</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/portfolio/index.html" title="About">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                About
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+        <li>
+            <a href="/archives">
+                文章总数
+                <span class="sidebar-badge">70</span>
+            </a>
+        </li>
+        
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+
+<!-- Theme Material -->
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+        <a href="https://www.google.com/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-gplus.svg);">
+                <span class="visuallyhidden">Google Plus</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/Jerey-Jobs" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.svg);">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;
+            <script type="text/javascript">
+                var fd = new Date();
+                document.write(fd.getFullYear());
+            </script>
+            &nbsp;夏敏的博客
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import File -->
+
+    <script src="/Material-Design-Blog/public/js/lazyload.min.js"></script>
+    <script src="/Material-Design-Blog/public/js/js.min.js"></script>
+
+
+
+    <script src="/Material-Design-Blog/public/js/nprogress.js"></script>
+
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+<script>
+    <!-- Offer LazyLoad -->
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    <!-- Start Queue -->
+    $(document).ready(function(){
+        setTimeout(function(){
+            setInterval(function(){
+                queue.execNext();
+            },200);
+        },3000);
+    });
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>

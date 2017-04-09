@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.3.3 -->
+
+    <!-- Title -->
+    
+    <title>
+        
+            一个工程带你学会使用RxJava+Retrofit | 
+        
+        夏敏的博客
+    </title>
+
+    <!-- Meta & Info -->
+    <meta charset="utf-8">
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    
+    
+    
+    
+    
+    
+
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="Jerey_Jobs">
+    <meta name="description" content="夏敏的博客">
+    <meta name="keywords" content="null,Android">
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/captain_android.jpg">
+    <link rel="icon" sizes="192x192" href="/img/captain_android.jpg">
+    <link rel="apple-touch-icon" href="/img/captain_android.jpg">
+
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="夏敏的博客">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://jerey.cn">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="一个工程带你学会使用RxJava+Retrofit | 夏敏的博客">
+    <meta property="og:description" content="夏敏的博客">
+    <meta property="og:article:tag" content="Android"> 
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS & jQuery -->
+    
+        <link rel="stylesheet" href="/Material-Design-Blog/public/css/material.min.css">
+        <link rel="stylesheet" href="/Material-Design-Blog/public/css/style.min.css">
+        <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-image: url(/img/bg.png);
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+        <script src="/Material-Design-Blog/public/js/jquery.min.js"></script>
+        <script src="/Material-Design-Blog/public/js/queue.js"></script>
+    
+
+    <!-- UC Browser Compatible -->
+    <script>
+        var agent = navigator.userAgent.toLowerCase();
+        if(agent.indexOf('ucbrowser')>0) {
+            document.write("<link rel=\"stylesheet\" href=\"/Material-Design-Blog/public/css/uc.css\">");
+            alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+        }
+    </script>
+
+    
+
+    
+
+
+    <!-- Bing Background -->
+    
+
+    <!-- Custom Head -->
+    
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#RxJava是什么？"><span class="post-toc-number">1.</span> <span class="post-toc-text">RxJava是什么？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#RxJava的好处"><span class="post-toc-number">2.</span> <span class="post-toc-text">RxJava的好处</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#逻辑原理"><span class="post-toc-number">3.</span> <span class="post-toc-text">逻辑原理</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用"><span class="post-toc-number">4.</span> <span class="post-toc-text">使用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#谢谢大家阅读，如有帮助，来个喜欢或者关注吧！"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">谢谢大家阅读，如有帮助，来个喜欢或者关注吧！</span></a></li></ol></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script>
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                一个工程带你学会使用RxJava+Retrofit
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/study-dog.jpg" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Jerey_Jobs</strong>
+        <span>1月 14, 2017</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/Material-Design-Blog/public/tags/Android/">Android</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=一个工程带你学会使用RxJava+Retrofit&url=http://jerey.cn/Material-Design-Blog/public//Material-Design-Blog/public/2017/01/14/2017-1-14-一个工程带你学会使用RxJava+Retrofit/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=一个工程带你学会使用RxJava+Retrofit&url=http://jerey.cn/Material-Design-Blog/public//Material-Design-Blog/public/2017/01/14/2017-1-14-一个工程带你学会使用RxJava+Retrofit/index.html&via=Jerey_Jobs" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://jerey.cn/Material-Design-Blog/public//Material-Design-Blog/public/2017/01/14/2017-1-14-一个工程带你学会使用RxJava+Retrofit/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://jerey.cn/Material-Design-Blog/public//Material-Design-Blog/public/2017/01/14/2017-1-14-一个工程带你学会使用RxJava+Retrofit/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=夏敏的博客&title=一个工程带你学会使用RxJava+Retrofit&summary=夏敏的博客&pics=http://jerey.cn/img/captain_android.jpg&url=http://jerey.cn/Material-Design-Blog/public/2017/01/14/2017-1-14-一个工程带你学会使用RxJava+Retrofit/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>写了一个工程，大概分六个demo.java带你学习如何使用,通熟易懂，很明显，是我这个菜鸟写的。</p>
+<h2 id="RxJava是什么？"><a href="#RxJava是什么？" class="headerlink" title="RxJava是什么？"></a>RxJava是什么？</h2><p>RxJava 在 GitHub 主页上的自我介绍是 “a library for composing asynchronous and event-based programs using observable sequences for the Java VM”（一个在 Java VM 上使用可观测的序列来组成异步的、基于事件的程序的库）。这就是 RxJava。<br>简单的来说， RxJava 的本质可以压缩为异步这一个词。说到根上，它就是一个实现异步操作的库，而别的定语都是基于这之上的。</p>
+<h2 id="RxJava的好处"><a href="#RxJava的好处" class="headerlink" title="RxJava的好处"></a>RxJava的好处</h2><p>简洁、美观</p>
+<p>异步操作很关键的一点是程序的简洁性，因为在调度过程比较复杂的情况下，异步代码经常会既难写也难被读懂。 Android 的framework为我们创造的 AsyncTask 和Handler ，其实都是为了让异步代码更加简洁。RxJava 的优势也是简洁，但它的简洁的与众不同之处在于，随着程序逻辑变得越来越复杂，它依然能够保持简洁。<br>而美观呢，说实话，我是一个喜欢写程序的人，对于写完的程序，很喜欢自己去看整体的代码，如果在业务逻辑很复杂的情况下，代码会变得多层嵌套，还有多层的if else，这样看起来是很复杂的，且逻辑也容易出现漏洞。而RxJava所写出来的程序是很美观的。真的美观！不信点击demo中的代码就知道了，若加上RxBinding，那会更加美观。</p>
+<h2 id="逻辑原理"><a href="#逻辑原理" class="headerlink" title="逻辑原理"></a>逻辑原理</h2><p>RxJava是一套基于观察者模式的工具库。众所周知，观察者模式在Android中使用的是相当的多的。<br>不懂观察者模式的可以移步至<a href="http://jerey.cn/2016/07/23/Android%E4%B8%AD%E7%9A%84%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/">观察者模式</a></p>
+<p>RxJava 有四个基本概念：Observable (可观察者，即被观察者)、 Observer (观察者)、 subscribe (订阅)、事件。Observable 和 Observer 通过 subscribe() 方法实现订阅关系，从而 Observable 可以在需要的时候发出事件来通知 Observer。</p>
+<p>其实详细的说还有很多，本文只做初步介绍。</p>
+<p>与观察者模式不同， RxJava 的事件回调方法除了普通事件 onNext() （相当于 onClick() / onEvent()）之外，还定义了两个特殊的事件：onCompleted() 和 onError()。</p>
+<p>RxJava 的观察者模式如下图：</p>
+<p><img src="/img/post1/rxjava1.jpg" alt="RxJava 的观察者模式"></p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>通过阅读以下代码链接，会一步一步的知道RxJava是如何使用的。<br>个人建议把我工程拉下来看，直接运行看log比较有感觉。<br><a href="https://github.com/Jerey-Jobs/RxJavaDemos" target="_blank" rel="external">工程链接：https://github.com/Jerey-Jobs/RxJavaDemos</a></p>
+<ul>
+<li>第一章：数据的发射与接收<br><br><a href="https://github.com/Jerey-Jobs/RxJavaDemos/blob/master/app/src/main/java/com/jerey/rxjavademo/Demo1.java" target="_blank" rel="external">第一章代码：数据的发射与接收</a><br>通过创建observable与observer <br><br>再通过 observable.subscribe(observer); 进行数据发布,实现简单的订阅关系。<br>具体见代码。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 第一章：</div><div class="line"> * 数据的发射与接收</div><div class="line"> * Created by Xiamin on 2017/1/14.</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo1</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"Demo1"</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">/**</span></div><div class="line">         * bong，数据发射</div><div class="line">         */</div><div class="line">        observable.subscribe(observer);</div><div class="line"></div><div class="line">        <span class="comment">/**</span></div><div class="line">         * 写法二</div><div class="line">         */</div><div class="line">        Observable.just(<span class="string">"第一章"</span>)</div><div class="line">                .subscribe(<span class="keyword">new</span> Action1&lt;String&gt;() &#123;</div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">                        Log.d(TAG, s);</div><div class="line">                    &#125;</div><div class="line">                &#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Observable：发射源，英文释义“可观察的”，在观察者模式中称为“被观察者”或“可观察对象”；</div><div class="line">     */</div><div class="line">    <span class="keyword">static</span> Observable&lt;String&gt; observable = Observable.create(<span class="keyword">new</span> Observable.OnSubscribe&lt;String&gt;() &#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(Subscriber&lt;? <span class="keyword">super</span> String&gt; subscriber)</span> </span>&#123;</div><div class="line">            subscriber.onNext(<span class="string">"xiamin"</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Observer：接收源，英文释义“观察者”，没错！就是观察者模式中的“观察者”，可接收Observable、Subject发射的数据；</div><div class="line">     */</div><div class="line">    <span class="keyword">static</span> Observer&lt;String&gt; observer = <span class="keyword">new</span> Observer&lt;String&gt;() &#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">            Log.d(TAG, s);</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>第二章：通过filter 控制筛选 通过map转换格式</p>
+<p><a href="https://github.com/Jerey-Jobs/RxJavaDemos/blob/master/app/src/main/java/com/jerey/rxjavademo/Demo2.java" target="_blank" rel="external">第二章代码：通过filter 控制筛选 通过map转换格式</a><br>通过Observable.just(1, 2, 3, 4, 5)，然后使用.filter进行数据筛选 .map进行数据的格式转换的demo。</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 第二章：通过filter 控制筛选 通过map转换格式</div><div class="line"> * Created by Xiamin on 2017/1/14.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo2</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"Demo2"</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</div><div class="line">        Observable.just(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</div><div class="line">                <span class="comment">/**</span></div><div class="line">                 * 筛选出偶数</div><div class="line">                 */</div><div class="line">                .filter(<span class="keyword">new</span> Func1&lt;Integer, Boolean&gt;() &#123;</div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> Boolean <span class="title">call</span><span class="params">(Integer integer)</span> </span>&#123;</div><div class="line">                        <span class="keyword">return</span> integer % <span class="number">2</span> == <span class="number">0</span>;</div><div class="line">                    &#125;</div><div class="line">                &#125;)</div><div class="line">                <span class="comment">/**</span></div><div class="line">                 * 除10转double</div><div class="line">                 */</div><div class="line">                .map(<span class="keyword">new</span> Func1&lt;Integer, Double&gt;() &#123;</div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> Double <span class="title">call</span><span class="params">(Integer integer)</span> </span>&#123;</div><div class="line">                        <span class="keyword">return</span> integer / <span class="number">10.0</span>;</div><div class="line">                    &#125;</div><div class="line">                &#125;)</div><div class="line">                .subscribe(<span class="keyword">new</span> Subscriber() &#123;</div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;</div><div class="line">                        Log.d(TAG, <span class="string">"onCompleted"</span>);</div><div class="line">                    &#125;</div><div class="line"></div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</div><div class="line">                    &#125;</div><div class="line"></div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(Object o)</span> </span>&#123;</div><div class="line">                        Log.d(TAG, o.toString());</div><div class="line">                    &#125;</div><div class="line">                &#125;);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"> <span class="comment">/** 打印结果</span></div><div class="line">  * 01-14 20:50:47.569 3113-3113/com.jerey.rxjavademo D/Demo2: 0.2</div><div class="line">  * 01-14 20:50:47.569 3113-3113/com.jerey.rxjavademo D/Demo2: 0.4</div><div class="line">  * 01-14 20:50:47.569 3113-3113/com.jerey.rxjavademo D/Demo2: onCompleted</div><div class="line">  */</div></pre></td></tr></table></figure>
+<ul>
+<li><p>第三章：Scheduler 线程控制</p>
+<p><a href="https://github.com/Jerey-Jobs/RxJavaDemos/blob/master/app/src/main/java/com/jerey/rxjavademo/Demo3.java" target="_blank" rel="external">第三章代码：Scheduler 线程控制</a><br>*</p>
+<ul>
+<li><p>Schedulers.immediate(): 直接在当前线程运行，相当于不指定线程。这是默认的 Scheduler。</p>
+</li>
+<li><p>Schedulers.newThread(): 总是启用新线程，并在新线程执行操作。</p>
+</li>
+<li><p>Schedulers.io(): I/O 操作（读写文件、读写数据库、网络信息交互等）所使用的 Scheduler</p>
+</li>
+<li><p>行为模式和 newThread() 差不多，区别在于 io() 的内部实现是是用一个无数量上限的线程池，可以重用空闲的线程，因此多数情况下 io() 比 newThread() 更有效率。不要把计算工作放在 io() 中，可以避免创建不必要的线程。</p>
+</li>
+<li><p>Schedulers.computation(): 计算所使用的 Scheduler。这个计算指的是 CPU 密集型计算，即不会被 I/O 等操作限制性能的操作，例如图形的计算。这个 Scheduler 使用的固定的线程池，大小为 CPU 核数。不要把 I/O 操作放在 computation() 中，否则 I/O 操作的等待时间会浪费 CPU。</p>
+</li>
+<li><p>另外， Android 还有一个专用的 AndroidSchedulers.mainThread()，它指定的操作将在 Android 主线程运行。 </p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> android.util.Log;</div><div class="line"></div><div class="line"><span class="keyword">import</span> rx.Observable;</div><div class="line"><span class="keyword">import</span> rx.Subscriber;</div><div class="line"><span class="keyword">import</span> rx.android.schedulers.AndroidSchedulers;</div><div class="line"><span class="keyword">import</span> rx.functions.Func1;</div><div class="line"><span class="keyword">import</span> rx.schedulers.Schedulers;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Log结果：</div><div class="line"> * 01-14 21:52:34.823 11566-11616/com.jerey.rxjavademo D/Demo3: OnSubscribe Threadid: 1423</div><div class="line"> * 01-14 21:52:34.867 11566-11566/com.jerey.rxjavademo D/Demo3: map Threadid: 1</div><div class="line"> * 01-14 21:52:34.867 11566-11566/com.jerey.rxjavademo D/Demo3: onNext Threadid: 1</div><div class="line"> * 01-14 21:52:34.867 11566-11566/com.jerey.rxjavademo D/Demo3:  test:1</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo3</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"Demo3"</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</div><div class="line">        Observable.create(<span class="keyword">new</span> Observable.OnSubscribe&lt;Integer&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(Subscriber&lt;? <span class="keyword">super</span> Integer&gt; subscriber)</span> </span>&#123;</div><div class="line">                subscriber.onNext(<span class="number">1</span>);</div><div class="line">                Log.d(TAG, <span class="string">"OnSubscribe Threadid: "</span> + Thread.currentThread().getId());</div><div class="line">            &#125;</div><div class="line">        &#125;)</div><div class="line">                .subscribeOn(Schedulers.io()) <span class="comment">// 指定 subscribe() 发生在 IO 线程</span></div><div class="line">                .observeOn(AndroidSchedulers.mainThread()) <span class="comment">// 指定 Subscriber 的回调发生在主线程</span></div><div class="line">                .map(<span class="keyword">new</span> Func1&lt;Integer, String&gt;() &#123;</div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> String <span class="title">call</span><span class="params">(Integer integer)</span> </span>&#123;</div><div class="line">                        Log.d(TAG, <span class="string">"map Threadid: "</span> + Thread.currentThread().getId());</div><div class="line">                        <span class="keyword">return</span> <span class="string">" test:"</span> + integer;</div><div class="line">                    &#125;</div><div class="line">                &#125;)</div><div class="line">                .lift(<span class="keyword">new</span> Observable.Operator&lt;String, String&gt;() &#123;</div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="keyword">public</span> Subscriber&lt;? <span class="keyword">super</span> String&gt; call(<span class="keyword">final</span> Subscriber&lt;? <span class="keyword">super</span> String&gt; subscriber) &#123;</div><div class="line">                        <span class="keyword">return</span> <span class="keyword">new</span> Subscriber&lt;String&gt;() &#123;</div><div class="line">                            <span class="meta">@Override</span></div><div class="line">                            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;</div><div class="line">                                subscriber.onCompleted();</div><div class="line">                            &#125;</div><div class="line"></div><div class="line">                            <span class="meta">@Override</span></div><div class="line">                            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</div><div class="line">                                subscriber.onError(e);</div><div class="line">                            &#125;</div><div class="line"></div><div class="line">                            <span class="meta">@Override</span></div><div class="line">                            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">                                subscriber.onNext(<span class="string">"lift-&gt;"</span> + s);</div><div class="line">                            &#125;</div><div class="line">                        &#125;;</div><div class="line">                    &#125;</div><div class="line">                &#125;)</div><div class="line">                .subscribe(<span class="keyword">new</span> Subscriber&lt;String&gt;() &#123;</div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">                    &#125;</div><div class="line"></div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</div><div class="line"></div><div class="line">                    &#125;</div><div class="line"></div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">                        Log.d(TAG, <span class="string">"onNext Threadid: "</span> + Thread.currentThread().getId());</div><div class="line">                        Log.d(TAG, s);</div><div class="line">                    &#125;</div><div class="line">                &#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>第四章：学会使用lift转变类型</p>
+<p><a href="https://github.com/Jerey-Jobs/RxJavaDemos/blob/master/app/src/main/java/com/jerey/rxjavademo/Demo4.java" target="_blank" rel="external">第四章代码：学会使用lift转变类型</a></p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 第四章：学会使用left转变类型</div><div class="line"> * Log is:</div><div class="line"> * 01-14 22:21:01.866 29758-29758/com.jerey.rxjavademo I/Demo4: in left :1</div><div class="line"> * 01-14 22:21:01.867 29758-29758/com.jerey.rxjavademo I/Demo4: arter left: had left: 1</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo4</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"Demo4"</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</div><div class="line">        Observable.just(<span class="number">1</span>)</div><div class="line">                <span class="comment">/**</span></div><div class="line">                 * Integer转换为String</div><div class="line">                 */</div><div class="line">                .lift(<span class="keyword">new</span> Observable.Operator&lt;String, Integer&gt;() &#123;</div><div class="line"></div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="keyword">public</span> Subscriber&lt;? <span class="keyword">super</span> Integer&gt; call(<span class="keyword">final</span> Subscriber&lt;? <span class="keyword">super</span> String&gt; subscriber) &#123;</div><div class="line">                        <span class="keyword">return</span> <span class="keyword">new</span> Subscriber&lt;Integer&gt;() &#123;</div><div class="line">                            <span class="meta">@Override</span></div><div class="line">                            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;</div><div class="line">                                subscriber.onCompleted();</div><div class="line">                            &#125;</div><div class="line"></div><div class="line">                            <span class="meta">@Override</span></div><div class="line">                            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</div><div class="line">                                subscriber.onError(e);</div><div class="line">                            &#125;</div><div class="line"></div><div class="line">                            <span class="meta">@Override</span></div><div class="line">                            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(Integer integer)</span> </span>&#123;</div><div class="line">                                Log.i(TAG, <span class="string">"in left :"</span> + integer);</div><div class="line">                                subscriber.onNext(<span class="string">"had left: "</span> + integer);</div><div class="line">                            &#125;</div><div class="line">                        &#125;;</div><div class="line">                    &#125;</div><div class="line">                &#125;)</div><div class="line">                .subscribe(<span class="keyword">new</span> Subscriber&lt;String&gt;() &#123;</div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;</div><div class="line">                    &#125;</div><div class="line"></div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</div><div class="line">                    &#125;</div><div class="line"></div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">                        Log.i(TAG, <span class="string">"arter left: "</span> + s);</div><div class="line">                    &#125;</div><div class="line">                &#125;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>第五章：学会使用Observable.Transformer 改变自身属性</li>
+</ul>
+<p><a href="https://github.com/Jerey-Jobs/RxJavaDemos/blob/master/app/src/main/java/com/jerey/rxjavademo/Demo5.java" target="_blank" rel="external">第五章代码：学会使用Observable.Transformer 改变自身属性</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 第五章：学会使用Observable.Transformer 改变自身属性</div><div class="line"> * Log:</div><div class="line"> * 01-14 22:29:30.179 3753-3753/com.jerey.rxjavademo D/Demo5: xiamni10</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo5</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"Demo5"</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</div><div class="line">        Observable observable = Observable.create(<span class="keyword">new</span> Observable.OnSubscribe&lt;Integer&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(Subscriber&lt;? <span class="keyword">super</span> Integer&gt; subscriber)</span> </span>&#123;</div><div class="line">                subscriber.onNext(<span class="number">10</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        Observable.Transformer&lt;Integer, String&gt; transformer = <span class="keyword">new</span> Observable.Transformer&lt;Integer, String&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> Observable&lt;String&gt; <span class="title">call</span><span class="params">(Observable&lt;Integer&gt; integerObservable)</span> </span>&#123;</div><div class="line">                <span class="keyword">return</span> integerObservable.map(<span class="keyword">new</span> Func1&lt;Integer, String&gt;() &#123;</div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> String <span class="title">call</span><span class="params">(Integer integer)</span> </span>&#123;</div><div class="line">                        <span class="keyword">return</span> <span class="string">"xiamni"</span> + integer;</div><div class="line">                    &#125;</div><div class="line">                &#125;);</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line">        observable.compose(transformer)</div><div class="line">                .subscribe(<span class="keyword">new</span> Subscriber() &#123;</div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;</div><div class="line">                    &#125;</div><div class="line"></div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</div><div class="line">                    &#125;</div><div class="line"></div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(Object o)</span> </span>&#123;</div><div class="line">                        Log.d(TAG, o.toString());</div><div class="line">                    &#125;</div><div class="line">                &#125;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>第六章：学会简单使用Retrofit</li>
+</ul>
+<p><a href="https://github.com/Jerey-Jobs/RxJavaDemos/blob/master/app/src/main/java/com/jerey/rxjavademo/RetrofitDemo.java" target="_blank" rel="external">第六章代码：学会使用Retrofit</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 第六章：学会使用Retrofit</div><div class="line"> * 网络请求结果在文件代码最后</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RetrofitDemo</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"RetrofitDemo"</span>;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String baseUrl = <span class="string">"http://jerey.cn/"</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</div><div class="line">        OkHttpClient client;</div><div class="line">        client = <span class="keyword">new</span> OkHttpClient.Builder()</div><div class="line">                <span class="comment">//添加应用拦截器</span></div><div class="line">                .addInterceptor(<span class="keyword">new</span> HttpInterceptor())</div><div class="line">                <span class="comment">//添加网络拦截器</span></div><div class="line">                .build();</div><div class="line">        Retrofit retrofit = <span class="keyword">new</span> Retrofit.Builder()</div><div class="line">                .baseUrl(baseUrl)</div><div class="line">                <span class="comment">//将client与retrofit关联</span></div><div class="line">                .client(client)</div><div class="line">                <span class="comment">//增加返回值为String的支持</span></div><div class="line">                .addConverterFactory(ScalarsConverterFactory.create())</div><div class="line">                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())</div><div class="line">                .build();</div><div class="line">        IRetrofitService retrofitService = retrofit.create(IRetrofitService.class);</div><div class="line">        retrofitService</div><div class="line">                .getTestHtmlString()</div><div class="line">                .subscribeOn(Schedulers.io())</div><div class="line">                .observeOn(AndroidSchedulers.mainThread())</div><div class="line">                .subscribe(<span class="keyword">new</span> Subscriber&lt;String&gt;() &#123;</div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;</div><div class="line">                        Log.d(TAG, <span class="string">"onCompleted"</span>);</div><div class="line">                    &#125;</div><div class="line"></div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</div><div class="line">                        <span class="comment">/**</span></div><div class="line">                         * D/RetrofitDemo: java.lang.SecurityException: Permission denied (missing INTERNET permission?)</div><div class="line">                         */</div><div class="line">                        Log.d(TAG, e.toString());</div><div class="line">                    &#125;</div><div class="line"></div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">                        Log.d(TAG, s);</div><div class="line">                    &#125;</div><div class="line">                &#125;);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">HttpInterceptor</span> <span class="keyword">implements</span> <span class="title">Interceptor</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> Response <span class="title">intercept</span><span class="params">(Chain chain)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">            Request request = chain.request();</div><div class="line">            <span class="comment">//打印请求链接</span></div><div class="line">            String TAG_REQUEST = <span class="string">"request"</span>;</div><div class="line">            Log.e(TAG_REQUEST, <span class="string">"request"</span> + request.url().toString());</div><div class="line">            Response response = chain.proceed(request);</div><div class="line">            <span class="comment">//打印返回的message</span></div><div class="line">            Log.e(TAG_REQUEST, <span class="string">"response"</span> + response.toString());</div><div class="line"></div><div class="line">            <span class="comment">/**</span></div><div class="line">             * 01-14 23:13:24.852 1484-1650/com.jerey.rxjavademo E/request: requesthttp://jerey.cn/</div><div class="line">             * 01-14 23:13:25.685 1484-1650/com.jerey.rxjavademo E/request: responseResponse&#123;protocol=http/1.1, code=200, message=OK, url=http://jerey.cn/&#125;</div><div class="line">             */</div><div class="line">            <span class="keyword">return</span> response;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="谢谢大家阅读，如有帮助，来个喜欢或者关注吧！"><a href="#谢谢大家阅读，如有帮助，来个喜欢或者关注吧！" class="headerlink" title="谢谢大家阅读，如有帮助，来个喜欢或者关注吧！"></a>谢谢大家阅读，如有帮助，来个喜欢或者关注吧！</h3><hr>
+<p> 本文作者：Anderson/Jerey_Jobs </p>
+<p> 博客地址   ： <a href="http://jerey.cn/">夏敏的博客/Anderson大码渣/Jerey_Jobs</a> <br><br> 简书地址   :  <a href="http://www.jianshu.com/users/016a5ba708a0/latest_articles" target="_blank" rel="external">Anderson大码渣</a> <br><br> CSDN地址   :  <a href="http://blog.csdn.net/jerey_jobs" target="_blank" rel="external">Jerey_Jobs的专栏</a> <br><br> github地址 :  <a href="https://github.com/Jerey-Jobs" target="_blank" rel="external">Jerey_Jobs</a></p>
+
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+
+
+
+
+
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/Material-Design-Blog/public/2017/01/11/2017-1-11-Android中的模板方法模式/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/Material-Design-Blog/public/2017/01/21/2017-01-21-整理的一些Android学习资源/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/study-dog.jpg" alt="Jerey_Jobs's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        610315802@qq.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="#" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/Material-Design-Blog/public/" target="_self">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2017/04/">四月 2017<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2017/03/">三月 2017<span class="sidebar_archives-count">12</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2017/02/">二月 2017<span class="sidebar_archives-count">11</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2017/01/">一月 2017<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2016/12/">十二月 2016<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2016/11/">十一月 2016<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2016/10/">十月 2016<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2016/09/">九月 2016<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2016/08/">八月 2016<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2016/07/">七月 2016<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2016/06/">六月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2015/09/">九月 2015<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/archives/2014/12/">十二月 2014<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/Android/">Android<span class="sidebar_archives-count">27</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/Blog/">Blog<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/Java/">Java<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/Linux/">Linux<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/View/">View<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/大学那点事/">大学那点事<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/奇技淫巧/">奇技淫巧<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/小知识/">小知识<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/工具类/">工具类<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/漫漫人生路/">漫漫人生路<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/程序员漫画/">程序员漫画<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/网络/">网络<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/设计模式/">设计模式<span class="sidebar_archives-count">10</span></a></li><li><a class="sidebar_archives-link" href="/Material-Design-Blog/public/categories/零散记录/">零散记录<span class="sidebar_archives-count">4</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/portfolio/index.html" title="About">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                About
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+        <li>
+            <a href="/archives">
+                文章总数
+                <span class="sidebar-badge">70</span>
+            </a>
+        </li>
+        
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+
+<!-- Theme Material -->
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+        <a href="https://www.google.com/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-gplus.svg);">
+                <span class="visuallyhidden">Google Plus</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/Jerey-Jobs" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.svg);">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;
+            <script type="text/javascript">
+                var fd = new Date();
+                document.write(fd.getFullYear());
+            </script>
+            &nbsp;夏敏的博客
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import File -->
+
+    <script src="/Material-Design-Blog/public/js/lazyload.min.js"></script>
+    <script src="/Material-Design-Blog/public/js/js.min.js"></script>
+
+
+
+    <script src="/Material-Design-Blog/public/js/nprogress.js"></script>
+
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+<script>
+    <!-- Offer LazyLoad -->
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    <!-- Start Queue -->
+    $(document).ready(function(){
+        setTimeout(function(){
+            setInterval(function(){
+                queue.execNext();
+            },200);
+        },3000);
+    });
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>
