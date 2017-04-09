@@ -1,4 +1,8 @@
-# [夏敏的博客](http://jerey.cn/)
+
+# [Material-Design-Blog](http://jerey.cn/Material-Design-Blog/)
+
+[Material-Design-Blog](http://jerey.cn/Material-Design-Blog/) 是 [夏敏的博客](http://jerey.cn/) 的Material-Design版本.
+
 ----------
 
 #### 于2017年1月1日将之前的小书匠博客仓库更名为Jerey-Jobs.github.io
