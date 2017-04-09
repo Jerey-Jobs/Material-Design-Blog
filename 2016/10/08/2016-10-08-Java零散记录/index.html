@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.3.3 -->
+
+    <!-- Title -->
+    
+    <title>
+        
+            Java零散记录 | 
+        
+        Hexo
+    </title>
+
+    <!-- Meta & Info -->
+    <meta charset="utf-8">
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    
+    
+    
+    
+    
+    
+
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="John Doe">
+    <meta name="description" content="null">
+    <meta name="keywords" content="null,Java,零散记录">
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/captain_android.jpg">
+    <link rel="icon" sizes="192x192" href="/img/captain_android.jpg">
+    <link rel="apple-touch-icon" href="/img/captain_android.jpg">
+
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Hexo">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://yoursite.com">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Java零散记录 | Hexo">
+    <meta property="og:description" content="null">
+    <meta property="og:article:tag" content="Java"> <meta property="og:article:tag" content="零散记录"> 
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS & jQuery -->
+    
+        <link rel="stylesheet" href="/css/material.min.css">
+        <link rel="stylesheet" href="/css/style.min.css">
+        <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-image: url(/img/bg.png);
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/queue.js"></script>
+    
+
+    <!-- UC Browser Compatible -->
+    <script>
+        var agent = navigator.userAgent.toLowerCase();
+        if(agent.indexOf('ucbrowser')>0) {
+            document.write("<link rel=\"stylesheet\" href=\"/css/uc.css\">");
+            alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+        }
+    </script>
+
+    
+
+    
+
+
+    <!-- Bing Background -->
+    
+
+    <!-- Custom Head -->
+    
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#String能被继承吗"><span class="post-toc-number">1.</span> <span class="post-toc-text">String能被继承吗</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么样的类不能被继承？"><span class="post-toc-number">2.</span> <span class="post-toc-text">什么样的类不能被继承？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#String-StringBuffer-StringBuilder区别"><span class="post-toc-number">3.</span> <span class="post-toc-text">String/StringBuffer/StringBuilder区别</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#静态内部类-匿名内部类-内部类"><span class="post-toc-number">4.</span> <span class="post-toc-text">静态内部类/匿名内部类/内部类</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#switch是否能作用在byte上，是否能作用在long上，是否能作用在String上？"><span class="post-toc-number">5.</span> <span class="post-toc-text">switch是否能作用在byte上，是否能作用在long上，是否能作用在String上？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#接口的意义"><span class="post-toc-number">6.</span> <span class="post-toc-text">接口的意义</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#覆盖equals时总要覆盖hashCode方法"><span class="post-toc-number">7.</span> <span class="post-toc-text">覆盖equals时总要覆盖hashCode方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#多态的好处"><span class="post-toc-number">8.</span> <span class="post-toc-text">多态的好处</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#线程阻塞"><span class="post-toc-number">9.</span> <span class="post-toc-text">线程阻塞</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#String转int"><span class="post-toc-number">10.</span> <span class="post-toc-text">String转int</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#格式化"><span class="post-toc-number">11.</span> <span class="post-toc-text">格式化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#JVM参数"><span class="post-toc-number">12.</span> <span class="post-toc-text">JVM参数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Hashcode的作用。"><span class="post-toc-number">13.</span> <span class="post-toc-text">Hashcode的作用。</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#try-catch-finally，try里有return，finally还执行么？"><span class="post-toc-number">14.</span> <span class="post-toc-text">try catch finally，try里有return，finally还执行么？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Excption与Error区别"><span class="post-toc-number">15.</span> <span class="post-toc-text">Excption与Error区别</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#final关键字的作用"><span class="post-toc-number">16.</span> <span class="post-toc-text">final关键字的作用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#可变长度数组的原理"><span class="post-toc-number">17.</span> <span class="post-toc-text">可变长度数组的原理</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#哈希表的原理："><span class="post-toc-number">18.</span> <span class="post-toc-text">哈希表的原理：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#StringBuffer-和-StringBuilder"><span class="post-toc-number">19.</span> <span class="post-toc-text">StringBuffer 和 StringBuilder</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么情况下finally的代码不执行"><span class="post-toc-number">20.</span> <span class="post-toc-text">什么情况下finally的代码不执行</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#当同步函数被static修饰时，这时的同步用的是哪个锁呢？"><span class="post-toc-number">21.</span> <span class="post-toc-text">当同步函数被static修饰时，这时的同步用的是哪个锁呢？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Map集合存储和Collection有着很大不同："><span class="post-toc-number">22.</span> <span class="post-toc-text">Map集合存储和Collection有着很大不同：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#想要获取map中的所有元素："><span class="post-toc-number">23.</span> <span class="post-toc-text">想要获取map中的所有元素：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#静态方法可以被重写么？"><span class="post-toc-number">24.</span> <span class="post-toc-text">静态方法可以被重写么？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Person-p-new-Person-创建一个对象都在内存中做了什么事情？"><span class="post-toc-number">25.</span> <span class="post-toc-text">Person p = new Person();创建一个对象都在内存中做了什么事情？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#构造函数为什么要super第一行，"><span class="post-toc-number">26.</span> <span class="post-toc-text">构造函数为什么要super第一行，</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#java-lang-Object"><span class="post-toc-number">27.</span> <span class="post-toc-text">java.lang.Object</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#小小面试题："><span class="post-toc-number">28.</span> <span class="post-toc-text">小小面试题：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#在Serializable类中的serialVersionUID的作用"><span class="post-toc-number">29.</span> <span class="post-toc-text">在Serializable类中的serialVersionUID的作用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#如何主动请求GC"><span class="post-toc-number">30.</span> <span class="post-toc-text">如何主动请求GC</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#谢谢大家阅读，如有帮助，来个喜欢或者关注吧！"><span class="post-toc-number">31.</span> <span class="post-toc-text">谢谢大家阅读，如有帮助，来个喜欢或者关注吧！</span></a></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script>
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                Java零散记录
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/study-dog.jpg" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>John Doe</strong>
+        <span>10月 08, 2016</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/Java/">Java</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/零散记录/">零散记录</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Java零散记录&url=http://yoursite.com//2016/10/08/2016-10-08-Java零散记录/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Java零散记录&url=http://yoursite.com//2016/10/08/2016-10-08-Java零散记录/index.html&via=John Doe" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com//2016/10/08/2016-10-08-Java零散记录/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com//2016/10/08/2016-10-08-Java零散记录/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Hexo&title=Java零散记录&summary=null&pics=http://yoursite.com/img/captain_android.jpg&url=http://yoursite.com/2016/10/08/2016-10-08-Java零散记录/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p><audio autoplay="autoplay" controls="controls" loop="loop" preload="auto" src="http://jerey-music.oss-cn-hangzhou.aliyuncs.com/music/Mark%20Bodino%20-%20Canon%20in%20D%20Major.mp3" width="0"><br>      你的浏览器不支持audio标签<br></audio><br><!-- <video id="video" controls="" preload="none" poster="http://media.w3.org/2010/05/sintel/poster.png">
+      <source id="mp4" src="http://media.w3.org/2010/05/sintel/trailer.mp4" type="video/mp4">
+      <source id="webm" src="http://media.w3.org/2010/05/sintel/trailer.webm" type="video/webm">
+      <source id="ogv" src="http://media.w3.org/2010/05/sintel/trailer.ogv" type="video/ogg">
+      <p>Your user agent does not support the HTML5 Video element.</p>
+    </video>  --></p>
+<hr>
+<ul>
+<li><h3 id="String能被继承吗"><a href="#String能被继承吗" class="headerlink" title="String能被继承吗"></a>String能被继承吗</h3><p>不能，因为String是这样定义的：public final class String extends Object，里边有final关键字，所以不能被继承。</p>
+</li>
+<li><h3 id="什么样的类不能被继承？"><a href="#什么样的类不能被继承？" class="headerlink" title="什么样的类不能被继承？"></a>什么样的类不能被继承？</h3><p>　一，在Java中，只要是被定义为final的类，也可以说是被final修饰的类，就是不能被继承的。<br><br>　二，final是java中的一个关键字，可以用来修饰变量、方法和类。用关键词final修饰的域成为最终域。用关键词final修饰的变量一旦赋值，就不能改变，也称为修饰的标识为常量。如果一个类的域被关键字final所修饰，它的取值在程序的整个执行过程中将不会改变。<br><br>　三，假如说整个类都是final，就表明自己不希望从这个类继承，或者不答应其他任何人采取这种操作。换言之，出于这样或那样的原因，我们的类肯定不需要进行任何改变；或者出于安全方面的理由，我们不希望进行子类化（子类处理）。</p>
+</li>
+<li><h3 id="String-StringBuffer-StringBuilder区别"><a href="#String-StringBuffer-StringBuilder区别" class="headerlink" title="String/StringBuffer/StringBuilder区别"></a>String/StringBuffer/StringBuilder区别</h3><p>Java 平台提供了两种类型的字符串：String和StringBuffer/StringBuilder，它们可以储存和操作字符串。其中String是只读字符串，也就意味着String引用的字符串内容是不能被改变的。而StringBuffer和StringBulder类表示的字符串对象可以直接进行修改。StringBuilder是JDK1.5引入的，它和StringBuffer的方法完全相同，区别在于它是单线程环境下使用的，因为它的所有方面都没有被synchronized修饰，因此它的效率也比StringBuffer略高。<br><br>总结：<br><br>String是不可变对象，每次改变都生成新对象<br><br>StringBuffer 不生成新对象，字符串经常改变情况下，推荐使用<br><br>StringBuilder 线程不安全，效率高</p>
+</li>
+<li><h3 id="静态内部类-匿名内部类-内部类"><a href="#静态内部类-匿名内部类-内部类" class="headerlink" title="静态内部类/匿名内部类/内部类"></a>静态内部类/匿名内部类/内部类</h3><blockquote>
+<p>静态内部类：使用static修饰的内部类<br><br>匿名内部类：使用new生成的内部类<br><br>内部类持有外部类的引用，因为内部类的产生依赖于外部类，持有的引用是类名.this。</p>
+</blockquote>
+</li>
+<li><h3 id="switch是否能作用在byte上，是否能作用在long上，是否能作用在String上？"><a href="#switch是否能作用在byte上，是否能作用在long上，是否能作用在String上？" class="headerlink" title="switch是否能作用在byte上，是否能作用在long上，是否能作用在String上？"></a>switch是否能作用在byte上，是否能作用在long上，是否能作用在String上？</h3><p>switch支持使用byte类型，不支持long类型，String支持在java1.7引入</p>
+</li>
+<li><h3 id="接口的意义"><a href="#接口的意义" class="headerlink" title="接口的意义"></a>接口的意义</h3><p>规范、扩展、回调</p>
+</li>
+<li><h3 id="覆盖equals时总要覆盖hashCode方法"><a href="#覆盖equals时总要覆盖hashCode方法" class="headerlink" title="覆盖equals时总要覆盖hashCode方法"></a>覆盖equals时总要覆盖hashCode方法</h3><p>因为如果对象根据equals方法是比较相等的，那么调这两个对象中的任意一个对象的hashCode方法都必须产生相同的效果</p>
+</li>
+<li><h3 id="多态的好处"><a href="#多态的好处" class="headerlink" title="多态的好处"></a>多态的好处</h3><p>可替换性、可扩充、接口性、灵活、简化</p>
+</li>
+<li><h3 id="线程阻塞"><a href="#线程阻塞" class="headerlink" title="线程阻塞"></a>线程阻塞</h3></li>
+<li><h3 id="String转int"><a href="#String转int" class="headerlink" title="String转int"></a>String转int</h3><blockquote>
+<p>int i = Integer.parseInt([String])</p>
+</blockquote>
+</li>
+<li><h3 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h3></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">    <span class="keyword">float</span> a = <span class="number">0.5534</span></div><div class="line">    DecimalFormat fnum = <span class="keyword">new</span> DecimalFormat(<span class="string">"##0.0"</span>);</div><div class="line">    String dd = fnum.format() + <span class="string">"%"</span>;</div><div class="line"></div><div class="line">结果为：<span class="number">0.5</span></div></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li><h3 id="JVM参数"><a href="#JVM参数" class="headerlink" title="JVM参数"></a>JVM参数</h3></li>
+</ul>
+<p>-Xmx128m：设置JVM最大可用内存为128M。</p>
+<p>-Xms128m：设置JVM最小内存为128m。此值可以设置与-Xmx相同，以避免每次垃圾回收完成后JVM重新分配内存。</p>
+<p>-Xmn2g：设置年轻代大小为2G。整个堆大小=年轻代大小 + 年老代大小 + 持久代大小。持久代一般固定大小为64m，所以增大年轻代后，将会减小年老代大小。此值对系统性能影响较大，Sun官方推荐配置为整个堆的3/8。</p>
+<p>-Xss128k：设置每个线程的堆栈大小。 JDK5.0以后每个线程堆栈大小为1M，以前每个线程堆栈大小为256K。根据应用的线程所需内存大小进行调整。在相同物理内存下，减小这个值能生成更 多的线程。但是操作系统对一个进程内的线程数还是有限制的，不能无限生成，经验值在3000~5000左右。</p>
+<hr>
+<ul>
+<li><h3 id="Hashcode的作用。"><a href="#Hashcode的作用。" class="headerlink" title="Hashcode的作用。"></a>Hashcode的作用。</h3></li>
+</ul>
+<p><a href="http://c610367182.iteye.com/blog/1930676" target="_blank" rel="external">http://c610367182.iteye.com/blog/1930676</a></p>
+<p>以Java.lang.Object来理解,JVM每new一个Object,它都会将这个Object丢到一个Hash哈希表中去,这样的话,下次做Object的比较或者取这个对象的时候,它会根据对象的hashcode再从Hash表中取这个对象。这样做的目的是提高取对象的效率。具体过程是这样:</p>
+<ol>
+<li>new Object(),JVM根据这个对象的Hashcode值,放入到对应的Hash表对应的Key上,如果不同的对象确产生了相同的hash值,也就是发生了Hash key相同导致冲突的情况,那么就在这个Hash key的地方产生一个链表,将所有产生相同hashcode的对象放到这个单链表上去,串在一起。</li>
+</ol>
+<ol>
+<li>比较两个对象的时候,首先根据他们的hashcode去hash表中找他的对象,当两个对象的hashcode相同,那么就是说他们这两个对象放在Hash表中的同一个key上,那么他们一定在这个key上的链表上。那么此时就只能根据Object的equal方法来比较这个对象是否equal。当两个对象的hashcode不同的话，肯定他们不能equal.</li>
+</ol>
+<hr>
+<ul>
+<li><h3 id="try-catch-finally，try里有return，finally还执行么？"><a href="#try-catch-finally，try里有return，finally还执行么？" class="headerlink" title="try catch finally，try里有return，finally还执行么？"></a>try catch finally，try里有return，finally还执行么？</h3></li>
+</ul>
+<p>会执行，在方法 返回调用者前执行。Java允许在finally中改变返回值的做法是不好的，因为如果存在finally代码块，try中的return语句不会立马返回调用者，而是纪录下返回值待finally代码块执行完毕之后再向调用者返回其值，然后如果在finally中修改了返回值，这会对程序造成很大的困扰，C#中就从语法规定不能做这样的事。</p>
+<hr>
+<ul>
+<li><h3 id="Excption与Error区别"><a href="#Excption与Error区别" class="headerlink" title="Excption与Error区别"></a>Excption与Error区别</h3></li>
+</ul>
+<p>Error表示系统级的错误和程序不必处理的异常，是恢复不是不可能但很困难的情况下的一种严重问题；比如内存溢出，不可能指望程序能处理这样的状况；Exception表示需要捕捉或者需要程序进行处理的异常，是一种设计或实现问题；也就是说，它表示如果程序运行正常，从不会发生的情况。</p>
+<hr>
+<ul>
+<li><h3 id="final关键字的作用"><a href="#final关键字的作用" class="headerlink" title="final关键字的作用"></a>final关键字的作用</h3></li>
+</ul>
+<p>相信对于final的用法，大多数人都可以随口说出三句话：</p>
+<p>1、被final修饰的类不可以被继承</p>
+<p>2、被final修饰的方法不可以被重写</p>
+<p>3、被final修饰的变量不可以被改变</p>
+<p>被final修饰的变量，不管变量是在是哪种变量，切记不可变的是变量的引用而非引用指向对象的内容。另外，本文中关于final的作用还有两点没有讲到：</p>
+<p>1、被final修饰的方法，JVM会尝试为之寻求内联，这对于提升Java的效率是非常重要的。因此，假如能确定方法不会被继承，那么尽量将方法定义为final的。</p>
+<p>2、被final修饰的常量，在编译阶段会存入调用类的常量池中。</p>
+<hr>
+<ul>
+<li><h3 id="可变长度数组的原理"><a href="#可变长度数组的原理" class="headerlink" title="可变长度数组的原理"></a>可变长度数组的原理</h3></li>
+</ul>
+<p>当元素超出数组长度，会产生一个新数组，将原数组的数据复制到新数组中，再将新的元素添加到新数组中。<br><br>ArrayList：是按照原数组的50%延长。构造一个初始容量为 10 的空列表。<br><br>Vector：是按照原数组的100%延长。<br></p>
+<hr>
+<ul>
+<li><h3 id="哈希表的原理："><a href="#哈希表的原理：" class="headerlink" title="哈希表的原理："></a>哈希表的原理：</h3></li>
+</ul>
+<p>1，对对象元素中的关键字(对象中的特有数据)，进行哈希算法的运算，并得出一个具体的算法值，这个值 称为哈希值。<br><br>2，哈希值就是这个元素的位置。<br><br>3，如果哈希值出现冲突，再次判断这个关键字对应的对象是否相同。如果对象相同，就不存储，因为元素重复。如果对象不同，就存储，在原来对象的哈希值基础 +1顺延。<br><br>4，存储哈希值的结构，我们称为哈希表。<br><br>5，既然哈希表是根据哈希值存储的，为了提高效率，最好保证对象的关键字是唯一的。<br>  这样可以尽量少的判断关键字对应的对象是否相同，提高了哈希表的操作效率。<br></p>
+<p>  对于ArrayList集合，判断元素是否存在，或者删元素底层依据都是equals方法。<br><br>对于HashSet集合，判断元素是否存在，或者删除元素，底层依据的是hashCode方法和equals方法。</p>
+<hr>
+<ul>
+<li><h3 id="StringBuffer-和-StringBuilder"><a href="#StringBuffer-和-StringBuilder" class="headerlink" title="StringBuffer 和 StringBuilder"></a>StringBuffer 和 StringBuilder</h3></li>
+</ul>
+<p>JDK1.5出现StringBuiler；构造一个其中不带字符的字符串生成器，初始容量为 16 个字符。该类被设计用作 StringBuffer的一个简易替换，用在字符串缓冲区被单个线程使用的时候（这种情况很普遍）。<br><br>方法和StringBuffer一样；</p>
+<p>StringBuffer 和 StringBuilder 的区别：<br><br>StringBuffer线程安全。<br><br>StringBuilder线程不安全。<br></p>
+<p>单线程操作，使用StringBuilder 效率高。<br><br>多线程操作，使用StringBuffer 安全。</p>
+<hr>
+<ul>
+<li><h3 id="什么情况下finally的代码不执行"><a href="#什么情况下finally的代码不执行" class="headerlink" title="什么情况下finally的代码不执行"></a>什么情况下finally的代码不执行</h3></li>
+</ul>
+<p>System.exit(0); //退出jvm，只有这种情况finally不执行。</p>
+<hr>
+<ul>
+<li><h3 id="当同步函数被static修饰时，这时的同步用的是哪个锁呢？"><a href="#当同步函数被static修饰时，这时的同步用的是哪个锁呢？" class="headerlink" title="当同步函数被static修饰时，这时的同步用的是哪个锁呢？"></a>当同步函数被static修饰时，这时的同步用的是哪个锁呢？</h3>静态函数在加载时所属于类，这时有可能还没有该类产生的对象，但是该类的字节码文件加载进内存就已经被封装成了对象，这个对象就是该类的字节码文件对象。<br><br>所以静态加载时，只有一个对象存在，那么静态同步函数就使用的这个对象。<br>这个对象就是 类名.class</li>
+</ul>
+<hr>
+<ul>
+<li><h3 id="Map集合存储和Collection有着很大不同："><a href="#Map集合存储和Collection有着很大不同：" class="headerlink" title="Map集合存储和Collection有着很大不同："></a>Map集合存储和Collection有着很大不同：</h3><p>Collection一次存一个元素；Map一次存一对元素。<br><br>Collection是单列集合；Map是双列集合。<br><br>Map中的存储的一对元素：一个是键，一个是值，键与值之间有对应(映射)关系。<br><br>特点：要保证map集合中键的唯一性。</p>
+</li>
+<li><h3 id="想要获取map中的所有元素："><a href="#想要获取map中的所有元素：" class="headerlink" title="想要获取map中的所有元素："></a>想要获取map中的所有元素：</h3><p>  原理：map中是没有迭代器的，collection具备迭代器，只要将map集合转成Set集合，可以使用迭代器了。之所以转成set，是因为map集合具备着键的唯一性，其实set集合就来自于map，set集合底层其实用的就是map的方法。</p>
+<p>把map集合转成set的方法：<br><br>  Set keySet();<br><br>  Set entrySet();//取的是键和值的映射关系。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><h3 id="静态方法可以被重写么？"><a href="#静态方法可以被重写么？" class="headerlink" title="静态方法可以被重写么？"></a>静态方法可以被重写么？</h3></li>
+</ul>
+<p>能！静态方法是和类绑定的，虽然能复写，但是可能得到的不是你想要的效果。</p>
+<p>如果从重写方法会有什么特点来看，我们是不能重写静态方法的。虽然就算你重写静态方法，编译器也不会报错。也就是说，如果你试图重写静态方法，Java不会阻止你这么做，但你却得不到预期的结果（重写仅对非静态方法有用）。重写指的是根据运行时对象的类型来决定调用哪个方法，而不是根据编译时的类型。让我们猜一猜为什么静态方法是比较特殊的？因为它们是类的方法，所以它们在编译阶段就使用编译出来的类型进行绑定了。使用对象引用来访问静态方法只是Java设计者给程序员的自由。我们应该直接使用类名来访问静态方法，而不要使用对象引用来访问。</p>
+<hr>
+<ul>
+<li><h3 id="Person-p-new-Person-创建一个对象都在内存中做了什么事情？"><a href="#Person-p-new-Person-创建一个对象都在内存中做了什么事情？" class="headerlink" title="Person p = new Person();创建一个对象都在内存中做了什么事情？"></a>Person p = new Person();创建一个对象都在内存中做了什么事情？</h3></li>
+</ul>
+<p>1：先将硬盘上指定位置的Person.class文件加载进内存。<br><br>2：执行main方法时，在栈内存中开辟了main方法的空间(压栈-进栈)，然后在main方法的栈区分配了一个变量p。<br><br>3：在堆内存中开辟一个实体空间，分配了一个内存首地址值。new<br><br>4：在该实体空间中进行属性的空间分配，并进行了默认初始化。<br><br>5：对空间中的属性进行显示初始化。<br><br>6：进行实体的构造代码块初始化。<br><br>7：调用该实体对应的构造函数，进行构造函数初始化。（）<br><br>8：将首地址赋值给p ，p变量就引用了该实体。(指向了该对象)</p>
+<hr>
+<ul>
+<li><h3 id="构造函数为什么要super第一行，"><a href="#构造函数为什么要super第一行，" class="headerlink" title="构造函数为什么要super第一行，"></a>构造函数为什么要super第一行，</h3>用this调用构造函数，必须定义在构造函数的第一行。因为构造函数是用于初始化的，所以初始化动作一定要执行。否则编译失败。</li>
+</ul>
+<hr>
+<ul>
+<li><h3 id="java-lang-Object"><a href="#java-lang-Object" class="headerlink" title="java.lang.Object"></a>java.lang.Object</h3></li>
+</ul>
+<p>Object：所有类的直接或者间接父类，Java认为所有的对象都具备一些基本的共性内容，这些内容可以不断的向上抽取，最终就抽取到了一个最顶层的类中的，该类中定义的就是所有对象都具备的功能。</p>
+<p>具体方法：<br><br>1，boolean equals(Object obj)：用于比较两个对象是否相等，其实内部比较的就是两个对象地址。如果根据 equals(Object) 方法，两个对象是相等的，那么对这两个对象中的每个对象调用 hashCode 方法都必须生成相同的整数结果<br><br>2，String toString()<br><br>3，Class getClass()：获取任意对象运行时的所属字节码文件对象。<br><br>4，int hashCode()：返回该对象的哈希码值。支持此方法是为了提高哈希表的性能。将该对象的内部地址转换成一个整数来实现的。</p>
+<p>通常equals，toString，hashCode，在应用中都会被复写，建立具体对象的特有的内容。</p>
+<hr>
+<ul>
+<li><h3 id="小小面试题："><a href="#小小面试题：" class="headerlink" title="小小面试题："></a>小小面试题：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//1</span></div><div class="line"><span class="keyword">new</span> Object()&#123;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</div><div class="line">		System.out.println(<span class="string">"show run"</span>);				</div><div class="line">	&#125;</div><div class="line">&#125;.show();									<span class="comment">//写法和编译都没问题</span></div><div class="line"><span class="comment">//2</span></div><div class="line">Object obj = <span class="keyword">new</span> Object()&#123;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</div><div class="line">		System.out.println(<span class="string">"show run"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;;</div><div class="line">obj.show();								<span class="comment">//写法正确，编译会报错</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>1和2的写法正确吗？有区别吗？说出原因。<br><br>写法是正确，1和2都是在通过匿名内部类建立一个Object类的子类对象。<br><br>区别：<br><br>第一个可是编译通过，并运行。<br><br>第二个编译失败，因为匿名内部类是一个子类对象，当用Object的obj引用指向时，就被提升为了Object类型，而编译时检查Object类中是否有show方法，所以编译失败。</p>
+<hr>
+<ul>
+<li><h3 id="在Serializable类中的serialVersionUID的作用"><a href="#在Serializable类中的serialVersionUID的作用" class="headerlink" title="在Serializable类中的serialVersionUID的作用"></a>在Serializable类中的serialVersionUID的作用</h3>private static final long serialVersionUID = -1672970955045193907L;</li>
+</ul>
+<p>SUID不是一个对象的哈希值（翻译错了，公司一个牛逼同事提醒了！），是源类的哈希值。如果类更新，例如域的改变，SUID会变化，这里有4个步骤：<br><br>1.忽略SUID,相当于运行期间类的版本上的序列化和反序列上面没有差异。<br><br>2.写一个默认的SUID,这就好像线程头部。告诉JVM所有版本中有着同样SUID的都是同一个版本。<br><br>3.复制之前版本类的SUID。运行期间这个版本和之前版本是一样的版本。<br><br>4.使用类每个版本生成的SUID。如果SUID与新版本的类不同，那么运行期间两个版本是不同的，并且老版本类序列化后的实例并不可以反序列成新的类的实例。</p>
+<p>实序列化的作用是能转化成Byte流，然后又能反序列化成原始的类。能在网络进行传输，也可以保存在磁盘中，有了SUID之后，那么如果序列化的类已经保存了在本地中，中途你更改了类后，SUID变了，那么反序列化的时候就不会变成原始的类了，还会抛异常，主要就是用于版本控制。</p>
+<hr>
+<ul>
+<li><h3 id="如何主动请求GC"><a href="#如何主动请求GC" class="headerlink" title="如何主动请求GC"></a>如何主动请求GC</h3></li>
+</ul>
+<p>1.System.gc()方法<br><br>  调用System.gc()可以主动请求垃圾回收机制，但也仅仅是一个请求。JVM接受这个消息后，并不是立即做垃圾回收，而只是对几个垃圾回收算法做了加权，使垃圾回收操作容易发生，或提早发生，或回收较多而已。<br><br>  良好的编程习惯是：GC调用不宜过多，保持代码健壮（记得将不用的变量置为null、资源使用完后释放），让虚拟机去管理内存。因为System.gc()方法会触发主GC，从而增加主GC的频率,也即增加了间歇性停顿的次数。</p>
+<p>2.finalize()方法<br><br>  一旦垃圾回收器准备好释放对象占用的存储空间，首先会去调用finalize()方法进行一些必要的清理工作。只有到下一次再进行垃圾回收动作的时候，才会真正释放这个对象所占用的内存空间（所以调用finalize()并不一点会GC）。<br><br>  另外finalize()函数是在垃圾回收器准备释放对象占用的存储空间的时候被调用的，绝对不能直接调用finalize()，所以应尽量避免用它</p>
+<hr>
+<ul>
+<li>###</li>
+</ul>
+<hr>
+<ul>
+<li>###</li>
+</ul>
+<hr>
+<ul>
+<li>###</li>
+</ul>
+<hr>
+<ul>
+<li>###</li>
+</ul>
+<hr>
+<ul>
+<li>###</li>
+</ul>
+<hr>
+<ul>
+<li>###</li>
+</ul>
+<hr>
+<ul>
+<li>###</li>
+</ul>
+<hr>
+<ul>
+<li>###</li>
+</ul>
+<hr>
+<ul>
+<li>###</li>
+</ul>
+<hr>
+<ul>
+<li>###</li>
+</ul>
+<hr>
+<ul>
+<li>###</li>
+</ul>
+<hr>
+<ul>
+<li>###</li>
+</ul>
+<hr>
+<ul>
+<li><p>###</p>
+<hr>
+</li>
+</ul>
+<h3 id="谢谢大家阅读，如有帮助，来个喜欢或者关注吧！"><a href="#谢谢大家阅读，如有帮助，来个喜欢或者关注吧！" class="headerlink" title="谢谢大家阅读，如有帮助，来个喜欢或者关注吧！"></a>谢谢大家阅读，如有帮助，来个喜欢或者关注吧！</h3><hr>
+<p> 本文作者：Anderson/Jerey_Jobs</p>
+<p> 简书地址   :  <a href="http://www.jianshu.com/users/016a5ba708a0/latest_articles" target="_blank" rel="external">Anderson大码渣</a><br><br> CSDN地址   :  <a href="http://blog.csdn.net/jerey_jobs" target="_blank" rel="external">Jerey_Jobs的专栏</a><br><br> github地址 :  <a href="https://github.com/Jerey-Jobs" target="_blank" rel="external">Jerey_Jobs</a></p>
+
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+
+
+
+
+
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2016/09/25/2016-09-25-奇技淫巧之-Android获取系统充电状态/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2016/10/17/2016-10-17-奇技淫巧之-EditText控制输入中文10个字英文20个字且不允许特殊字符/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/study-dog.jpg" alt="John Doe's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        610315802@qq.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="#" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/" target="_self">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2017/04/">四月 2017<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/03/">三月 2017<span class="sidebar_archives-count">12</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/02/">二月 2017<span class="sidebar_archives-count">11</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/01/">一月 2017<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">十二月 2016<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/11/">十一月 2016<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">十月 2016<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">九月 2016<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/08/">八月 2016<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">七月 2016<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/06/">六月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2015/09/">九月 2015<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2014/12/">十二月 2014<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/Android/">Android<span class="sidebar_archives-count">27</span></a></li><li><a class="sidebar_archives-link" href="/categories/Blog/">Blog<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Java/">Java<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/View/">View<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/大学那点事/">大学那点事<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/奇技淫巧/">奇技淫巧<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/categories/小知识/">小知识<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/工具类/">工具类<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/漫漫人生路/">漫漫人生路<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/程序员漫画/">程序员漫画<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/网络/">网络<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/设计模式/">设计模式<span class="sidebar_archives-count">10</span></a></li><li><a class="sidebar_archives-link" href="/categories/零散记录/">零散记录<span class="sidebar_archives-count">4</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/portfolio/index.html" title="About">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                About
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+        <li>
+            <a href="/archives">
+                文章总数
+                <span class="sidebar-badge">70</span>
+            </a>
+        </li>
+        
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+
+<!-- Theme Material -->
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+        <a href="https://www.google.com/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-gplus.svg);">
+                <span class="visuallyhidden">Google Plus</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/Jerey-Jobs" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.svg);">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;
+            <script type="text/javascript">
+                var fd = new Date();
+                document.write(fd.getFullYear());
+            </script>
+            &nbsp;Hexo
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import File -->
+
+    <script src="/js/lazyload.min.js"></script>
+    <script src="/js/js.min.js"></script>
+
+
+
+    <script src="/js/nprogress.js"></script>
+
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+<script>
+    <!-- Offer LazyLoad -->
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    <!-- Start Queue -->
+    $(document).ready(function(){
+        setTimeout(function(){
+            setInterval(function(){
+                queue.execNext();
+            },200);
+        },3000);
+    });
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>

@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.3.3 -->
+
+    <!-- Title -->
+    
+    <title>
+        
+            Java的反射机制 | 
+        
+        Hexo
+    </title>
+
+    <!-- Meta & Info -->
+    <meta charset="utf-8">
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    
+    
+    
+    
+    
+    
+
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="John Doe">
+    <meta name="description" content="null">
+    <meta name="keywords" content="null,Java">
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/captain_android.jpg">
+    <link rel="icon" sizes="192x192" href="/img/captain_android.jpg">
+    <link rel="apple-touch-icon" href="/img/captain_android.jpg">
+
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Hexo">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://yoursite.com">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Java的反射机制 | Hexo">
+    <meta property="og:description" content="null">
+    <meta property="og:article:tag" content="Java"> 
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS & jQuery -->
+    
+        <link rel="stylesheet" href="/css/material.min.css">
+        <link rel="stylesheet" href="/css/style.min.css">
+        <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-image: url(/img/bg.png);
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/queue.js"></script>
+    
+
+    <!-- UC Browser Compatible -->
+    <script>
+        var agent = navigator.userAgent.toLowerCase();
+        if(agent.indexOf('ucbrowser')>0) {
+            document.write("<link rel=\"stylesheet\" href=\"/css/uc.css\">");
+            alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+        }
+    </script>
+
+    
+
+    
+
+
+    <!-- Bing Background -->
+    
+
+    <!-- Custom Head -->
+    
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script>
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                Java的反射机制
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/study-dog.jpg" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>John Doe</strong>
+        <span>8月 24, 2016</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/Java/">Java</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Java的反射机制&url=http://yoursite.com//2016/08/24/2016-08-24-Java的反射机制/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Java的反射机制&url=http://yoursite.com//2016/08/24/2016-08-24-Java的反射机制/index.html&via=John Doe" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com//2016/08/24/2016-08-24-Java的反射机制/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com//2016/08/24/2016-08-24-Java的反射机制/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Hexo&title=Java的反射机制&summary=null&pics=http://yoursite.com/img/captain_android.jpg&url=http://yoursite.com/2016/08/24/2016-08-24-Java的反射机制/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p><img src="http://upload-images.jianshu.io/upload_images/2305881-5a75fc314c380ee3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="java"></p>
+<ul>
+<li>反射机制的功能</li>
+</ul>
+<p>Java反射机制主要提供了以下功能：<br>在运行时判断任意一个对象所属的类；<br>在运行时构造任意一个类的对象；<br>在运行时判断任意一个类所具有的成员变量和方法；<br>在运行时调用任意一个对象的方法；<br>生成动态代理。</p>
+<ul>
+<li>反射机制的利弊</li>
+</ul>
+<p>其实好处就是，增加程序的灵活性,避免将程序写死到代码里；但是坏处也有，就是性能是一个问题，反射相当于一系列解释操作，通知jvm要做的事情，性能比直接的java代码要慢很多。且不安全，通过反射机制我们能拿到类的私有成员。</p>
+<ul>
+<li>详解</li>
+</ul>
+<p><strong>Reflection</strong>。这个字的意思是“反射、映象、倒影”，用在Java身上指的是我们可以于运行时加载、探知、使用编译期间完全未知的classes。换句话说，Java程序可以加载一个运行时才得知名称的class，获悉其完整构造（但不包括methods定义），并生成其对象实体、或对其fields设值、或唤起其methods。这种“看透class”的能力（the ability of the program to examine itself）被称为introspection（内省、内观、反省）。Reflection和introspection是常被并提的两个术语。</p>
+<p>反射之中包含了一个“反”的概念，所以要想解释反射就必须先从“正”开始解释，一般而言，当用户使用一个类的时候，应该先知道这个类，而后通过这个类产生实例化对象，但是“反”指的是通过对象找到类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">packagecn.mldn.demo;</div><div class="line">classPerson &#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line">Public <span class="class"><span class="keyword">class</span> <span class="title">TestDemo</span> </span>&#123;</div><div class="line">	<span class="function">Public <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> throwsException </span>&#123;</div><div class="line">		Person per = newPerson() ; <span class="comment">// 正着操作</span></div><div class="line">		System.out.println(per.getClass().getName()); <span class="comment">// 反着来</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上的代码使用了一个getClass()方法，而后就可以得到对象所在的“包.类”名称，这就属于“反”了，但是在这个“反”的操作之中有一个getClass()就作为发起一切反射操作的开端。<br>Person的父类是Object类，而上面所使用getClass()方法就是Object类之中所定义的方法。<br>·取得Class对象：public final Class&lt;?&gt; getClass()，反射之中的所有泛型都定义为?，返回值都是Object。<br>而这个getClass()方法返回的对象是Class类的对象，所以这个Class就是所有反射操作的源头。但是在讲解其真正使用之前还有一个需要先解释的问题，既然Class是所有反射操作的源头，那么这个类肯定是最为重要的，而如果要想取得这个类的实例化对象，Java中定义了三种方式：<br>方式一：通过Object类的getClass()方法取得，基本不用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">packagecn.mldn.demo;classPerson &#123;</div><div class="line">publicclassTestDemo &#123;publicstaticvoidmain(String[] args) throwsException &#123;</div><div class="line">	Person per = newPerson() ; <span class="comment">// 正着操作</span></div><div class="line">	Class&lt;?&gt; cls = per.getClass() ; <span class="comment">// 取得Class对象</span></div><div class="line">	System.out.println(cls.getName()); <span class="comment">// 反着来</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>方式二：使用“类.class”取得，在日后学习Hibernate开发的时候使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">packagecn.mldn.demo;</div><div class="line">classPerson &#123;&#125;</div><div class="line">publicclassTestDemo &#123;</div><div class="line">	publicstaticvoidmain(String[] args) throwsException &#123;</div><div class="line">		Class&lt;?&gt; cls = Person.class; <span class="comment">// 取得Class对象</span></div><div class="line">		System.out.println(cls.getName()); <span class="comment">// 反着来</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>方式三：使用Class类内部定义的一个static方法，主要使用<br>·取得Class类对象：public static Class&lt;?&gt; forName(String className) throws ClassNotFoundException；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">packagecn.mldn.demo;</div><div class="line">classPerson &#123;&#125;</div><div class="line">publicclassTestDemo &#123;</div><div class="line">	publicstaticvoidmain(String[] args) throwsException &#123;</div><div class="line">		Class&lt;?&gt; cls = Class.forName(<span class="string">"cn.mldn.demo.Person"</span>) ; <span class="comment">// 取得Class对象</span></div><div class="line">		System.out.println(cls.getName()); <span class="comment">// 反着来</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>那么现在一个新的问题又来了，取得了Class类的对象有什么用处呢？对于对象的实例化操作之前一直依靠构造方法和关键字new完成，可是有了Class类对象之后，现在又提供了另外一种对象的实例化方法：<br>·通过反射实例化对象：public T newInstance() throws InstantiationException, IllegalAccessException；<br>范例：通过反射实例化对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">packagecn.mldn.demo;</div><div class="line">classPerson &#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function">publicString <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span><span class="string">"Person Class Instance ."</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">publicclassTestDemo &#123;</div><div class="line">publicstaticvoidmain(String[] args) throwsException &#123;</div><div class="line">	Class&lt;?&gt; cls = Class.forName(<span class="string">"cn.mldn.demo.Person"</span>) ; <span class="comment">// 取得Class对象</span></div><div class="line">		Object obj = cls.newInstance() ; <span class="comment">// 实例化对象，和使用关键字new一样</span></div><div class="line">		Person per = (Person) obj ; <span class="comment">// 向下转型</span></div><div class="line">		System.out.println(per);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>那么现在可以发现，对于对象的实例化操作，除了使用关键字new之外又多了一个反射机制操作，而且这个操作要比之前使用的new复杂一些，可是有什么用？<br>对于程序的开发模式之前一直强调：尽量减少耦合，而减少耦合的最好做法是使用接口，但是就算使用了接口也逃不出关键字new，所以实际上new是造成耦合的关键元凶。<br>范例：回顾一下之前所编写的工厂设计模式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">packagecn.mldn.demo;</div><div class="line">interfaceFruit &#123;</div><div class="line">	publicvoideat() ;</div><div class="line">&#125;</div><div class="line"></div><div class="line">classApple implementsFruit &#123;</div><div class="line">	publicvoideat() &#123;</div><div class="line">		System.out.println(<span class="string">"吃苹果。"</span>);</div><div class="line">	&#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">classFactory &#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Fruit <span class="title">getInstance</span><span class="params">(String className)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span>(<span class="string">"apple"</span>.equals(className))&#123;</div><div class="line">			<span class="keyword">return</span> <span class="keyword">new</span> Apple() ;</div><div class="line">		&#125;</div><div class="line">		returnnull;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">publicclassFactoryDemo &#123;</div><div class="line">	publicstaticvoidmain(String[] args) &#123;</div><div class="line">		Fruit f = Factory.getInstance(<span class="string">"apple"</span>) ;</div><div class="line">		f.eat() ;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上为之前所编写最简单的工厂设计模式，但是在这个工厂设计模式之中有一个最大的问题：如果现在接口的子类增加了，那么工厂类肯定需要修改，这是它所面临的最大问题，而这个最大问题造成的关键性的病因是new，那么如果说现在不使用关键字new了，变为了反射机制呢？<br>反射机制实例化对象的时候实际上只需要“包.类”就可以，于是根据此操作，修改工厂设计模式。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">packagecn.mldn.demo;</div><div class="line">interfaceFruit &#123;</div><div class="line">	publicvoideat() ;</div><div class="line">&#125;</div><div class="line">classApple implementsFruit &#123;</div><div class="line">	publicvoideat() &#123;</div><div class="line">		System.out.println(<span class="string">"吃苹果。"</span>);</div><div class="line">	&#125;;</div><div class="line">&#125;</div><div class="line">classOrange implementsFruit &#123;</div><div class="line">	publicvoideat() &#123;</div><div class="line">		System.out.println(<span class="string">"吃橘子。"</span>);</div><div class="line">	&#125;;</div><div class="line">&#125;</div><div class="line">classFactory &#123;</div><div class="line">	<span class="function">publicstaticFruit <span class="title">getInstance</span><span class="params">(String className)</span> </span>&#123;</div><div class="line">		Fruit f = <span class="keyword">null</span>;</div><div class="line">		<span class="keyword">try</span>&#123;</div><div class="line">			f = (Fruit) Class.forName(className).newInstance() ;</div><div class="line">		&#125; <span class="keyword">catch</span>(Exception e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125;</div><div class="line">		returnf ;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">publicclassFactoryDemo &#123;</div><div class="line">	publicstaticvoidmain(String[] args) &#123;</div><div class="line">		Fruit f = Factory.getInstance(<span class="string">"cn.mldn.demo.Orange"</span>) ;</div><div class="line">		f.eat() ;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>发现，这个时候即使增加了接口的子类，工厂类照样可以完成对象的实例化操作，这个才是真正的工厂类，可以应对于所有的变化。如果单独从开发角度而言，与开发者关系不大，但是对于日后学习的一些框架技术这个就是它实现的命脉，在日后的程序开发上，如果发现操作的过程之中需要传递了一个完整的“包.类”名称的时候几乎都是反射机制作用。<br>3.12.2 、反射的深入应用<br>以上只是利用了Class类作为了反射实例化对象的基本应用，但是对于一个实例化对象而言，它需要调用类之中的构造方法、普通方法、属性，而这些操作都可以通过反射机制完成。<br>3.12.2 .1、调用构造<br>使用反射机制也可以取得类之中的构造方法，这个方法在Class类之中已经明确定义了：<br>以下两个方法<br>取得一个类的全部构造：<br>public Constructor&lt;?&gt;[] getConstructors() throws SecurityException<br>取得一个类的指定参数构造：<br>public Constructor<t> getConstructor(Class&lt;?&gt;… parameterTypes) throws NoSuchMethodException, SecurityException</t></p>
+<p>现在发现以上的两个方法返回的都是java.lang.reflect.Constructor类的对象。<br>范例：取得一个类之中的全部构造</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">packagecn.mldn.demo;</div><div class="line">importjava.lang.reflect.Constructor;</div><div class="line">classPerson &#123; <span class="comment">// CTRL + K</span></div><div class="line">	publicPerson() &#123;&#125;</div><div class="line">	publicPerson(String name) &#123;&#125;</div><div class="line">	publicPerson(String name,intage) &#123;&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">publicclassTestDemo &#123;</div><div class="line">	publicstaticvoidmain(String[] args) throwsException &#123;</div><div class="line">		Class&lt;?&gt; cls = Class.forName(<span class="string">"cn.mldn.demo.Person"</span>) ; <span class="comment">// 取得Class对象</span></div><div class="line">		Constructor&lt;?&gt; cons [] = cls.getConstructors() ; <span class="comment">// 取得全部构造</span></div><div class="line">		<span class="keyword">for</span>(intx = <span class="number">0</span>; x &lt; cons.length; x++) &#123;</div><div class="line">			System.out.println(cons[x]);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>验证：在之前强调的一个简单Java类必须存在一个无参构造方法<br>范例：观察没有无参构造的情况</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">packagecn.mldn.demo;</div><div class="line">classPerson &#123; <span class="comment">// CTRL + K</span></div><div class="line">	privateString name;</div><div class="line">	privateintage;</div><div class="line"></div><div class="line">	publicPerson(String name,intage) &#123;</div><div class="line">		<span class="keyword">this</span>.name= name ;</div><div class="line">		<span class="keyword">this</span>.age= age ;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function">publicString <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span><span class="string">"Person [name="</span>+ name+ <span class="string">", age="</span>+ age+ <span class="string">"]"</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">publicclassTestDemo &#123;</div><div class="line">publicstaticvoidmain(String[] args) throwsException &#123;</div><div class="line">		Class&lt;?&gt; cls = Class.forName(<span class="string">"cn.mldn.demo.Person"</span>) ; <span class="comment">// 取得Class对象</span></div><div class="line">		Object obj = cls.newInstance(); <span class="comment">// 实例化对象</span></div><div class="line">		System.out.println(obj);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>此时程序运行的时候出现了错误提示“java.lang.InstantiationException”，因为以上的方式使用反射实例化对象时需要的是类之中要提供无参构造方法，但是现在既然没有了无参构造方法，那么就必须明确的找到一个构造方法，而后利用Constructor类之中的新方法实例化对象：<br>·实例化对象：public T newInstance(Object… initargs) throws InstantiationException, IllegalAccessException,IllegalArgumentException, InvocationTargetException</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">packagecn.mldn.demo;</div><div class="line">importjava.lang.reflect.Constructor;</div><div class="line"></div><div class="line">classPerson &#123; <span class="comment">// CTRL + K</span></div><div class="line">	privateString name;</div><div class="line">	privateintage;</div><div class="line"></div><div class="line">	publicPerson(String name,intage) &#123;</div><div class="line">		<span class="keyword">this</span>.name= name ;</div><div class="line">		<span class="keyword">this</span>.age= age ;</div><div class="line">	&#125;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function">publicString <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span><span class="string">"Person [name="</span>+ name+ <span class="string">", age="</span>+ age+ <span class="string">"]"</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">publicclassTestDemo &#123;</div><div class="line">	publicstaticvoidmain(String[] args) throwsException &#123;</div><div class="line">		Class&lt;?&gt; cls = Class.forName(<span class="string">"cn.mldn.demo.Person"</span>) ; <span class="comment">// 取得Class对象</span></div><div class="line">		<span class="comment">// 取得指定参数类型的构造方法</span></div><div class="line">		Constructor&lt;?&gt; cons = cls.getConstructor(String.class,<span class="keyword">int</span>.class) ;</div><div class="line">		Object obj = cons.newInstance(<span class="string">"张三"</span>, <span class="number">20</span>); <span class="comment">// 为构造方法传递参数</span></div><div class="line">		System.out.println(obj);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>很明显，调用无参构造方法实例化对象要比调用有参构造的更加简单、方便，所以在日后的所有开发之中，凡是有简单Java类出现的地方，都一定要提供无参构造。</p>
+<p>3.12.2 .2、调用普通方法<br>当取得了一个类实例化对象之后，下面最需要调用的肯定是类之中的方法，所以可以继续使用Class类取得一个类中所定义的方法定义：<br>·取得全部方法：public Method[] getMethods() throws SecurityException；<br>·取得指定方法：public Method getMethod(String name, Class&lt;?&gt;… parameterTypes) throws NoSuchMethodException, SecurityException<br>发现以上的方法返回的都是java.lang.reflect.Method类的对象。<br>范例：取得一个类之中所定义的全部方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">packagecn.mldn.demo;</div><div class="line">importjava.lang.reflect.Method;</div><div class="line">classPerson &#123;</div><div class="line">	privateString name;</div><div class="line"></div><div class="line">	publicvoidsetName(String name) &#123;</div><div class="line">		<span class="keyword">this</span>.name= name;</div><div class="line">	&#125;</div><div class="line">	<span class="function">publicString <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">		returnname;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">publicclassTestDemo &#123;</div><div class="line">	publicstaticvoidmain(String[] args) throwsException &#123;</div><div class="line">		Class&lt;?&gt; cls = Class.forName(<span class="string">"cn.mldn.demo.Person"</span>) ; <span class="comment">// 取得Class对象</span></div><div class="line">		Method met [] = cls.getMethods() ; <span class="comment">// 取得全部方法</span></div><div class="line">		<span class="keyword">for</span>(intx = <span class="number">0</span>; x &lt; met.length; x++) &#123;</div><div class="line">			System.out.println(met[x]);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>但是取得了Method类对象最大的作用不再于方法的列出（方法的列出都在开发工具上使用了），但是对于取得了Method类对象之后还有一个最大的功能，就是可以利用反射调用类中的方法：<br>·调用方法：public Object invoke(Object obj, Object… args) throws IllegalAccessException,IllegalArgumentException, InvocationTargetException<br>之前调用类中方法的时候使用的都是“对象.方法”，但是现在有了反射之后，可以直接利用Object类调用指定子类的操作方法。（同时解释一下，为什么setter、getter方法的命名要求如此严格）。<br>范例：利用反射调用Person类之中的setName()、getName()方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">packagecn.mldn.demo;</div><div class="line">importjava.lang.reflect.Method;</div><div class="line">classPerson &#123;</div><div class="line">	privateString name;</div><div class="line"></div><div class="line">	publicvoidsetName(String name) &#123;</div><div class="line">		<span class="keyword">this</span>.name= name;</div><div class="line">	&#125;</div><div class="line">	<span class="function">publicString <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">		returnname;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">publicclassTestDemo &#123;</div><div class="line">	publicstaticvoidmain(String[] args) throwsException &#123;</div><div class="line">		Class&lt;?&gt; cls = Class.forName(<span class="string">"cn.mldn.demo.Person"</span>) ; <span class="comment">// 取得Class对象</span></div><div class="line">		Object obj = cls.newInstance(); <span class="comment">// 实例化对象，没有向Person转型</span></div><div class="line">		String attribute = <span class="string">"name"</span>; <span class="comment">// 要调用类之中的属性</span></div><div class="line">		Method setMet = cls.getMethod(<span class="string">"set"</span>+ initcap(attribute), String.class);<span class="comment">// setName()</span></div><div class="line">		Method getMet = cls.getMethod(<span class="string">"get"</span>+ initcap(attribute));<span class="comment">// getName()</span></div><div class="line">		setMet.invoke(obj, <span class="string">"张三"</span>) ; <span class="comment">// 等价于：Person对象.setName("张三")</span></div><div class="line">		System.out.println(getMet.invoke(obj));<span class="comment">// 等价于：Person对象.getName()</span></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function">publicstaticString <span class="title">initcap</span><span class="params">(String str)</span> </span>&#123;</div><div class="line">		returnstr.substring(<span class="number">0</span>,<span class="number">1</span>).toUpperCase().concat(str.substring(<span class="number">1</span>)) ;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在日后的所有框架技术开发之中，简单Java类都是如此应用的，所以必须按照标准进行。<br>3.12.2 .3、调用成员<br>类之中最后一个组成部分就是成员（Field，也可以称为属性），如果要通过反射取得类的成员可以使用方法如下：<br>·取得本类的全部成员：public Field[] getDeclaredFields() throws SecurityException；<br>·取得指定的成员：public Field getDeclaredField(String name) throws NoSuchFieldException, SecurityException；<br>这两个方法的返回值类型是java.lang.reflect.Field类的对象，下面首先观察如何取得一个类之中的全部属性。<br>范例：取得一个类之中的全部属性</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">packagecn.mldn.demo;</div><div class="line">importjava.lang.reflect.Field;</div><div class="line">classPerson &#123;</div><div class="line">	privateString name;</div><div class="line">&#125;</div><div class="line">publicclassTestDemo &#123;</div><div class="line">	publicstaticvoidmain(String[] args) throwsException &#123;</div><div class="line">		Class&lt;?&gt; cls = Class.forName(<span class="string">"cn.mldn.demo.Person"</span>) ; <span class="comment">// 取得Class对象</span></div><div class="line">		Field field [] = cls.getDeclaredFields() ; <span class="comment">// 取得全部属性</span></div><div class="line">		<span class="keyword">for</span>(intx = <span class="number">0</span>; x &lt; field.length; x++) &#123;</div><div class="line">			System.out.println(field[x]);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>但是找到Field实际上就找到了一个很有意思的操作，在Field类之中提供了两个方法：<br>·设置属性内容（类似于：对象.属性= 内容）：public void set(Object obj, Object value)<br>throws IllegalArgumentException, IllegalAccessException；<br>·取得属性内容（类似于：对象.属性）：public Object get(Object obj)<br>throws IllegalArgumentException, IllegalAccessException<br>可是从类的开发要求而言，一直都强调类之中的属性必须封装，所以现在调用之前要想办法解除封装。<br>·解除封装：public void setAccessible(boolean flag) throws SecurityException；<br>范例：利用反射操作类中的属性</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">packagecn.mldn.demo;</div><div class="line">importjava.lang.reflect.Field;</div><div class="line">classPerson &#123;</div><div class="line">	privateString name;</div><div class="line">&#125;</div><div class="line">publicclassTestDemo &#123;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) throwsException &#123;</div><div class="line">		Class&lt;?&gt; cls = Class.forName(<span class="string">"cn.mldn.demo.Person"</span>); <span class="comment">// 取得Class对象</span></div><div class="line">		<span class="keyword">Object</span> obj = cls.newInstance(); <span class="comment">// 对象实例化属性才会分配空间</span></div><div class="line">		Field nameField = cls.getDeclaredField(<span class="string">"name"</span>) ; <span class="comment">// 找到name属性</span></div><div class="line">		nameField.setAccessible(<span class="keyword">true</span>) ; <span class="comment">// 解除封装了</span></div><div class="line">		nameField.<span class="built_in">set</span>(obj, <span class="string">"张三"</span>) ; <span class="comment">// Person对象.name = "张三"</span></div><div class="line">		System.out.<span class="built_in">println</span>(nameField.<span class="built_in">get</span>(obj)); <span class="comment">// Person对象.name</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+
+
+
+
+
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2016/08/19/2016-08-19-Android中的代理模式/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2016/09/06/2016-09-06-Android N新特性-多窗口模式适配/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/study-dog.jpg" alt="John Doe's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        610315802@qq.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="#" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/" target="_self">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2017/04/">四月 2017<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/03/">三月 2017<span class="sidebar_archives-count">12</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/02/">二月 2017<span class="sidebar_archives-count">11</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/01/">一月 2017<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">十二月 2016<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/11/">十一月 2016<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">十月 2016<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">九月 2016<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/08/">八月 2016<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">七月 2016<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/06/">六月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2015/09/">九月 2015<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2014/12/">十二月 2014<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/Android/">Android<span class="sidebar_archives-count">27</span></a></li><li><a class="sidebar_archives-link" href="/categories/Blog/">Blog<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Java/">Java<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/View/">View<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/大学那点事/">大学那点事<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/奇技淫巧/">奇技淫巧<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/categories/小知识/">小知识<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/工具类/">工具类<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/漫漫人生路/">漫漫人生路<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/程序员漫画/">程序员漫画<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/网络/">网络<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/设计模式/">设计模式<span class="sidebar_archives-count">10</span></a></li><li><a class="sidebar_archives-link" href="/categories/零散记录/">零散记录<span class="sidebar_archives-count">4</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/portfolio/index.html" title="About">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                About
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+        <li>
+            <a href="/archives">
+                文章总数
+                <span class="sidebar-badge">70</span>
+            </a>
+        </li>
+        
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+
+<!-- Theme Material -->
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+        <a href="https://www.google.com/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-gplus.svg);">
+                <span class="visuallyhidden">Google Plus</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/Jerey-Jobs" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.svg);">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;
+            <script type="text/javascript">
+                var fd = new Date();
+                document.write(fd.getFullYear());
+            </script>
+            &nbsp;Hexo
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import File -->
+
+    <script src="/js/lazyload.min.js"></script>
+    <script src="/js/js.min.js"></script>
+
+
+
+    <script src="/js/nprogress.js"></script>
+
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+<script>
+    <!-- Offer LazyLoad -->
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    <!-- Start Queue -->
+    $(document).ready(function(){
+        setTimeout(function(){
+            setInterval(function(){
+                queue.execNext();
+            },200);
+        },3000);
+    });
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>
