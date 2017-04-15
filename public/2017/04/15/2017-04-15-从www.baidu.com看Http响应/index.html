@@ -10,7 +10,7 @@
     
     <title>
         
-            分类: 奇技淫巧 | 
+            从www.baidu.com看Http请求 | 
         
         夏敏的博客
     </title>
@@ -32,7 +32,7 @@
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="Jerey_Jobs">
     <meta name="description" content="夏敏的博客">
-    <meta name="keywords" content="null">
+    <meta name="keywords" content="null,Http">
 
     <!-- Favicons -->
     <link rel="icon shortcut" type="image/ico" href="/img/captain_android.jpg">
@@ -58,9 +58,9 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://jerey.cn">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="分类: 奇技淫巧 | 夏敏的博客">
+    <meta property="og:title" content="从www.baidu.com看Http请求 | 夏敏的博客">
     <meta property="og:description" content="夏敏的博客">
-    
+    <meta property="og:article:tag" content="Http"> 
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -216,333 +216,298 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
     
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
 
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#查看请求"><span class="post-toc-number">1.</span> <span class="post-toc-text">查看请求</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#报文的组成部分"><span class="post-toc-number">2.</span> <span class="post-toc-text">报文的组成部分</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#常见首部"><span class="post-toc-number">3.</span> <span class="post-toc-text">常见首部</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#上述百度的请求报文解析"><span class="post-toc-number">4.</span> <span class="post-toc-text">上述百度的请求报文解析:</span></a></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script>
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/Material-Design-Blog/public/2017/01/07/2017-01-07-奇技淫巧之生成二维码工具类/">奇技淫巧之生成二维码工具类</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            前言生成二维码是我...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/Material-Design-Blog/public/2017/01/07/2017-01-07-奇技淫巧之生成二维码工具类/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/study-dog.jpg" width="44px" height="44px" alt="Jerey_Jobs's avatar">
-            </div>
-            <div>
-                <strong>Jerey_Jobs</strong>
-                <span>1月 07, 2017</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/Material-Design-Blog/public/categories/奇技淫巧/">奇技淫巧</a>
-            </span>
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/Material-Design-Blog/public/2016/11/02/2016-11-02-如何在Fragment中监听触摸事件/">如何在Fragment中监听触摸事件</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            好久没写简书了，今日送上监听Fragment的触摸事件实现。如果大家有更好的机制，欢迎comment。
-大家都知道，我们的activi...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/Material-Design-Blog/public/2016/11/02/2016-11-02-如何在Fragment中监听触摸事件/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/study-dog.jpg" width="44px" height="44px" alt="Jerey_Jobs's avatar">
-            </div>
-            <div>
-                <strong>Jerey_Jobs</strong>
-                <span>11月 02, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/Material-Design-Blog/public/categories/奇技淫巧/">奇技淫巧</a>
-            </span>
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/Material-Design-Blog/public/2016/10/17/2016-10-17-奇技淫巧之-Android监听键盘弹出与隐藏事件/">奇技淫巧之-Android监听键盘弹出与隐藏事件</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            相信看到这个标题，大家都会潜意识觉得：Activity中没有可以复写的方法么？或者说，没有什么listener么?抱歉，真的没有，我们潜意识...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/Material-Design-Blog/public/2016/10/17/2016-10-17-奇技淫巧之-Android监听键盘弹出与隐藏事件/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/study-dog.jpg" width="44px" height="44px" alt="Jerey_Jobs's avatar">
-            </div>
-            <div>
-                <strong>Jerey_Jobs</strong>
-                <span>10月 17, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/Material-Design-Blog/public/categories/奇技淫巧/">奇技淫巧</a>
-            </span>
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/Material-Design-Blog/public/2016/10/17/2016-10-17-奇技淫巧之-EditText控制输入中文10个字英文20个字且不允许特殊字符/">奇技淫巧之-EditText控制输入中文10个字英文20个字且不允许特殊字符</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            备注这个需求是大家...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/Material-Design-Blog/public/2016/10/17/2016-10-17-奇技淫巧之-EditText控制输入中文10个字英文20个字且不允许特殊字符/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/study-dog.jpg" width="44px" height="44px" alt="Jerey_Jobs's avatar">
-            </div>
-            <div>
-                <strong>Jerey_Jobs</strong>
-                <span>10月 17, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/Material-Design-Blog/public/categories/奇技淫巧/">奇技淫巧</a>
-            </span>
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/Material-Design-Blog/public/2016/09/25/2016-09-25-奇技淫巧之-Android获取系统充电状态/">奇技淫巧之-Android获取系统充电状态</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/Material-Design-Blog/public/2016/09/25/2016-09-25-奇技淫巧之-Android获取系统充电状态/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/study-dog.jpg" width="44px" height="44px" alt="Jerey_Jobs's avatar">
-            </div>
-            <div>
-                <strong>Jerey_Jobs</strong>
-                <span>9月 25, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/Material-Design-Blog/public/categories/奇技淫巧/">奇技淫巧</a>
-            </span>
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-
-    
-
-    
-        <script>
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
     $('.post_thumbnail-random').addClass('lazy');
-
-        locatePost = locatePost.next();
-    }
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                从www.baidu.com看Http请求
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/study-dog.jpg" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Jerey_Jobs</strong>
+        <span>4月 15, 2017</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/Material-Design-Blog/public/tags/Http/">Http</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=从www.baidu.com看Http请求&url=http://jerey.cn/Material-Design-Blog/public//Material-Design-Blog/public/2017/04/15/2017-04-15-从www.baidu.com看Http响应/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=从www.baidu.com看Http请求&url=http://jerey.cn/Material-Design-Blog/public//Material-Design-Blog/public/2017/04/15/2017-04-15-从www.baidu.com看Http响应/index.html&via=Jerey_Jobs" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://jerey.cn/Material-Design-Blog/public//Material-Design-Blog/public/2017/04/15/2017-04-15-从www.baidu.com看Http响应/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://jerey.cn/Material-Design-Blog/public//Material-Design-Blog/public/2017/04/15/2017-04-15-从www.baidu.com看Http响应/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=夏敏的博客&title=从www.baidu.com看Http请求&summary=夏敏的博客&pics=http://jerey.cn/img/captain_android.jpg&url=http://jerey.cn/Material-Design-Blog/public/2017/04/15/2017-04-15-从www.baidu.com看Http响应/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <ul>
+<li><h3 id="查看请求"><a href="#查看请求" class="headerlink" title="查看请求"></a>查看请求</h3>在Chrome输入<code>www.baidu.com</code>, F12进入控制台再点击NETWORK, 我们便可以看到该页面的所有请求, 点开第一个就可以看到如图的结构了. 我们以访问百度(www.baidu.com)为例子，看看我们在请求一个URL的时候、客户端向服务器发送了那些东西</li>
+</ul>
+<p><img src="/img/post1/http-headers.png" alt=""></p>
+<ul>
+<li><h3 id="报文的组成部分"><a href="#报文的组成部分" class="headerlink" title="报文的组成部分"></a>报文的组成部分</h3></li>
+</ul>
+<p><img src="/img/post1/http-request.png" alt=""></p>
+<p>一个HTTP报文由3部分组成，分别是:</p>
+<p>(1)、起始行(start line)  上图右下角的第一行就是起始行的解析 <br><br>   GET方式/ 协议为http/1.1</p>
+<p>(2)、首部(header) <br><br> 上图右下角的第二行开始就是首部了<br><br> 如: Connection连接方式 都是属于首部</p>
+<p>(3)、主体(body) <br><br>Hello world</p>
+<ul>
+<li><h3 id="常见首部"><a href="#常见首部" class="headerlink" title="常见首部"></a>常见首部</h3></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>首部</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Host</td>
+<td>给出了接收请求的服务器的主机名和端口号</td>
+</tr>
+<tr>
+<td>Connection    　　　　</td>
+<td>　　    允许客户端和服务器指定与请求/响应连接有关的选项</td>
+</tr>
+<tr>
+<td>Date    　　　　　　　</td>
+<td>　　  提供日期和时间标志，说明报文是什么时间创建的</td>
+</tr>
+<tr>
+<td>User-Agent</td>
+<td>将发起请求的应用程序名称告知服务器(User-Agent)用户代理，其实就是浏览器型号</td>
+</tr>
+<tr>
+<td>Cookie</td>
+<td>浏览器在请求时如果本地存在请求服务器的资源的Cookie信息时、则在Request的时候将会带上这对Cookie信息、帮助服务器识别是否是历史访问人员</td>
+</tr>
+<tr>
+<td>Accept</td>
+<td>指定客户端能够接受的内容类型、按照先后顺序表示客户端接受的先后次序、如上图中的Accept:text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8.</td>
+</tr>
+<tr>
+<td>DNT</td>
+<td>DO NOT TRACK 的缩写、要求服务器不要跟踪记录用户信息。为1时表示开启、0时表示关闭。主流浏览器都支持这些、在chrome,firefox中你可以在设置中找到这个设置项。</td>
+</tr>
+<tr>
+<td>Accept-Encoding</td>
+<td>浏览器能处理的编码、非字符编码而是指资源压缩方法（是否支持压缩、支持那种类型的压缩gzip,deflate等）。</td>
+</tr>
+<tr>
+<td>Accept-Language</td>
+<td>客户端申明自己所能接收的语言、比如gb2312 utf-8 等、语言和字符集的关系是、语言中包含了字符。</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><h3 id="上述百度的请求报文解析"><a href="#上述百度的请求报文解析" class="headerlink" title="上述百度的请求报文解析:"></a>上述百度的请求报文解析:</h3></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">GET / HTTP/1.1                //请求方法为GET，HTTP协议为1.1</div><div class="line">Host: www.baidu.com            //URL为www.baidu.com</div><div class="line">Connection: keep-alive    //连接，keep-alive保持状态</div><div class="line">Cache-Control: max-age=0    //随报文传送缓存指示    cache-control max-age&gt;0 时 直接从游览器缓存中 提取 max-age<span class="tag">&lt;<span class="name">=0</span> 时 向<span class="attr">server</span> 发送<span class="attr">http</span> 请求确认 ,该资源是否有修改 有的话 返回<span class="attr">200</span> ,无的话 返回<span class="attr">304.</span></span></div><div class="line"><span class="attr">User-Agent:</span> <span class="attr">Mozilla</span>/<span class="attr">5.0</span> (<span class="attr">Windows</span> <span class="attr">NT</span> <span class="attr">6.1</span>; <span class="attr">rv:19.0</span>) <span class="attr">Gecko</span>/<span class="attr">20100101</span> <span class="attr">Firefox</span>/<span class="attr">19.0</span>    //用户代理，也就是浏览器了，显示了浏览器的详细信息</div><div class="line"><span class="attr">Accept:</span> <span class="attr">text</span>/<span class="attr">html</span>,<span class="attr">application</span>/<span class="attr">xhtml</span>+<span class="attr">xml</span>,<span class="attr">application</span>/<span class="attr">xml</span>;<span class="attr">q</span>=<span class="string">0.9,*/*;q</span>=<span class="string">0.8</span>        //服务器能够发送的文件类型<span class="attr">text</span>/<span class="attr">html</span>的意思是<span class="attr">HTML</span>文本文档类型，后面那些查文档去</div><div class="line"><span class="attr">Accept-Language:</span> <span class="attr">zh-cn</span>,<span class="attr">zh</span>;<span class="attr">q</span>=<span class="string">0.8,en-us;q</span>=<span class="string">0.5,en;q</span>=<span class="string">0.3</span>                //服务器能够发送的语言 <span class="attr">zh-cn</span>为中文，后面那些查文档去</div><div class="line"><span class="attr">Accept-Encoding:</span> <span class="attr">gzip</span>, <span class="attr">deflate</span>                            //服务器能够发送的编码格式为<span class="attr">gzip</span>，编码格式不符合浏览器会解释不了</div><div class="line"><span class="attr">Cookie:</span> <span class="attr">BAIDUID</span>=<span class="string">AF6C346B14E94898933E5F858C63F889:FG</span>=<span class="string">1;</span> <span class="attr">BDREFER</span>=<span class="string">%7Burl%3A%22http%3A//news.baidu.com/%22%2Cword%3A%22%22%7D;</span> <span class="attr">H_PS_PSSID</span>=<span class="string">2097_1464_2133_1944_1788</span>    //<span class="attr">cookie</span>，服务器存储在客户端的信息，每次请求都会将服务器保存在客户端的<span class="attr">cookie</span>一并发送上服务器。</div></pre></td></tr></table></figure>
+<hr>
+<p>本文作者：Anderson/Jerey_Jobs</p>
+<p>博客地址   ： <a href="http://jerey.cn/">http://jerey.cn/</a><br><br>简书地址   :  <a href="http://www.jianshu.com/users/016a5ba708a0/latest_articles" target="_blank" rel="external">Anderson大码渣</a><br><br>github地址 :  <a href="https://github.com/Jerey-Jobs" target="_blank" rel="external">https://github.com/Jerey-Jobs</a></p>
+
+    
+
     
 </div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+
+
+
+
+
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/Material-Design-Blog/public/2017/04/10/2017-04-10-KeepGank.IO, 开源第三方GankIO客户端/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
